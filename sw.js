@@ -1,15 +1,15 @@
 
-const CACHE_NAME = "terracaraibe-v1";
+const CACHE_NAME = "terracaraibe-v1.5";
 const APP_FILES = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./app.js",
+  "./assets/css/styles.css",
+  "./assets/js/app.js",
   "./manifest.webmanifest",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/icon-maskable-512.png",
-  "./icons/apple-touch-icon.png"
+  "./assets/icons/icon-192.png",
+  "./assets/icons/icon-512.png",
+  "./assets/icons/icon-maskable-512.png",
+  "./assets/icons/apple-touch-icon.png"
 ];
 
 self.addEventListener("install", event => {

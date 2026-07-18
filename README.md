@@ -23,6 +23,10 @@
 - Copy-to-clipboard controls
 - Light and dark appearance support through the device color scheme
 - GitHub Pages compatibility
+- Collapsible mobile sections with smooth open/close animation
+- Rotating section chevrons
+- Remembered open sections between visits
+- Automatic scrolling to newly expanded sections
 
 ## Supported area units
 
@@ -104,7 +108,7 @@ The service worker caches the application interface and conversion logic after t
 ## Publish with GitHub Pages
 
 1. Create a new GitHub repository or open an existing repository.
-2. Upload all files and folders from this project. Keep the `icons` folder intact.
+2. Upload all files and folders from this project. Keep the `assets` and `docs` folders intact.
 3. Commit the files to the `main` branch.
 4. Open **Settings → Pages** in the repository.
 5. Under **Build and deployment**, select **Deploy from a branch**.
@@ -142,16 +146,70 @@ Then open:
 http://localhost:8000
 ```
 
-## Project files
+## Repository structure
 
-- `index.html`: application markup, translated interface, and iOS/PWA metadata
-- `styles.css`: responsive mobile interface and appearance rules
-- `app.js`: area conversion, costing, currency conversion, translation, caching, and interaction logic
-- `manifest.webmanifest`: installable PWA configuration
-- `sw.js`: application-shell and offline caching
-- `icons/`: home-screen, standard PWA, and maskable icons
+```text
+TerraCaraibe/
+├── index.html
+├── manifest.webmanifest
+├── sw.js
+├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── app.js
+│   └── icons/
+│       ├── apple-touch-icon.png
+│       ├── icon-192.png
+│       ├── icon-512.png
+│       └── icon-maskable-512.png
+├── docs/
+│   ├── design-notes.md
+│   ├── release-process.md
+│   └── testing-checklist.md
+├── CHANGELOG.md
+├── ROADMAP.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── .gitignore
+└── README.md
+```
+
+The deployable entry files remain at the repository root so GitHub Pages can publish directly from `main` and `/ (root)` without a build process.
+
+## Recommended development workflow
+
+1. Fetch and pull the latest `main` branch in GitHub Desktop.
+2. Create a descriptive feature or fix branch for substantive work.
+3. Make one coherent set of changes.
+4. Test locally through an HTTP server.
+5. Review the English and French interfaces, calculations, mobile layout, and offline behavior.
+6. Update documentation and `CHANGELOG.md` when applicable.
+7. Commit with a clear action-oriented message.
+8. Push the branch and review the changes.
+9. Merge into `main` after testing.
+10. Verify the live GitHub Pages deployment.
+
+See `CONTRIBUTING.md` and `docs/release-process.md` for the complete workflow.
 
 ## Version history
+
+### v1.5
+
+- Reorganized styles, scripts, and icons into the `assets` directory
+- Added dedicated design, release, and testing documentation
+- Added `CHANGELOG.md`, `ROADMAP.md`, `CONTRIBUTING.md`, `LICENSE`, and `.gitignore`
+- Updated asset paths and the service-worker cache
+- Preserved direct root deployment through GitHub Pages
+
+### v1.4
+
+- Added collapsible sections for conversion, land cost, all conversions, and definitions
+- Added smooth 260 ms open-and-close animations
+- Added rotating chevrons that indicate section state
+- Added local storage persistence for open sections
+- Added automatic smooth scrolling to newly expanded sections
+- Added reduced-motion support for accessibility
 
 ### v1.3
 

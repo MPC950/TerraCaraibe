@@ -40,6 +40,7 @@ const translations = {
     reference: "Reference",
     allConversions: "All conversions",
     precision: "Precision",
+    changePrecision: "Change precision",
     definitions: "Definitions used",
     notationNote: "SI symbols are standardized. Abbreviations for traditional land units are customary and may vary between deeds and jurisdictions.",
     offlineReady: "Works offline after the first visit.",
@@ -79,6 +80,7 @@ const translations = {
     reference: "Référence",
     allConversions: "Toutes les conversions",
     precision: "Précision",
+    changePrecision: "Modifier la précision",
     definitions: "Définitions utilisées",
     notationNote: "Les symboles SI sont normalisés. Les abréviations des unités foncières traditionnelles sont d’usage et peuvent varier selon les actes et les juridictions.",
     offlineReady: "Fonctionne hors ligne après la première visite.",
@@ -135,6 +137,87 @@ let toastTimer;
 let usdHtgRate = DEFAULT_USD_HTG_RATE;
 let rateSource = "default";
 let rateUpdatedAt = null;
+
+const ACCORDION_STATE_KEY = "terracaraibe-open-sections";
+const accordionSections = [...document.querySelectorAll(".collapsible-section")];
+
+function getSavedOpenSections() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(ACCORDION_STATE_KEY));
+    return Array.isArray(saved) ? saved : ["conversion"];
+  } catch (_) {
+    return ["conversion"];
+  }
+}
+
+function saveOpenSections() {
+  const openIds = accordionSections
+    .filter(section => section.querySelector(".accordion-trigger").getAttribute("aria-expanded") === "true")
+    .map(section => section.dataset.sectionId);
+  localStorage.setItem(ACCORDION_STATE_KEY, JSON.stringify(openIds));
+}
+
+function setAccordionState(section, open, { animate = true, scroll = false } = {}) {
+  const trigger = section.querySelector(".accordion-trigger");
+  const content = section.querySelector(".accordion-content");
+  trigger.setAttribute("aria-expanded", String(open));
+
+  if (!animate) {
+    content.style.transition = "none";
+    content.hidden = !open;
+    content.classList.toggle("is-open", open);
+    content.style.height = open ? "auto" : "0px";
+    requestAnimationFrame(() => { content.style.transition = ""; });
+    return;
+  }
+
+  if (open) {
+    content.hidden = false;
+    content.style.height = "0px";
+    content.classList.add("is-open");
+    requestAnimationFrame(() => {
+      content.style.height = `${content.scrollHeight}px`;
+    });
+    const onOpened = event => {
+      if (event.propertyName !== "height") return;
+      content.style.height = "auto";
+      content.removeEventListener("transitionend", onOpened);
+      if (scroll) {
+        const top = section.getBoundingClientRect().top + window.scrollY - 12;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    };
+    content.addEventListener("transitionend", onOpened);
+  } else {
+    content.style.height = `${content.scrollHeight}px`;
+    requestAnimationFrame(() => {
+      content.style.height = "0px";
+      content.classList.remove("is-open");
+    });
+    const onClosed = event => {
+      if (event.propertyName !== "height") return;
+      content.hidden = true;
+      content.removeEventListener("transitionend", onClosed);
+    };
+    content.addEventListener("transitionend", onClosed);
+  }
+}
+
+function initializeAccordions() {
+  const saved = new Set(getSavedOpenSections());
+  accordionSections.forEach(section => {
+    const shouldOpen = saved.has(section.dataset.sectionId);
+    setAccordionState(section, shouldOpen, { animate: false });
+    section.querySelector(".accordion-trigger").addEventListener("click", event => {
+      if (event.target.closest("#precisionButton")) return;
+      const trigger = section.querySelector(".accordion-trigger");
+      const open = trigger.getAttribute("aria-expanded") !== "true";
+      setAccordionState(section, open, { scroll: open });
+      saveOpenSections();
+    });
+  });
+}
+
 
 function parseLocalizedNumber(value) {
   const cleaned = value.trim().replace(/\s/g, "").replace(",", ".");
@@ -417,6 +500,7 @@ els.precisionButton.addEventListener("click", () => {
 });
 
 els.precisionValue.textContent = precision;
+initializeAccordions();
 loadCachedRate();
 translateInterface();
 fetchLiveRate();
