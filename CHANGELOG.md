@@ -4,6 +4,18 @@ All notable changes to TerraCaraïbe are documented here.
 
 The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
+## [2.2.0] - 2026-07-18
+
+### Added
+- Added a formal design-token system for color, typography, spacing, radii, shadows, and control sizing.
+- Added a consistent offline-safe outline icon set used across the dashboard, navigation, actions, and generated result cards.
+
+### Changed
+- Standardized card, button, input, select, focus, hover, pressed, and selected states across every screen.
+- Consolidated light, dark, and system appearance styles under the same semantic design tokens.
+- Refined responsive spacing and component proportions to support future Parcel Planner and Plantation Planner modules.
+- Updated the application version and offline cache identifier.
+
 ## [2.1.2] - 2026-07-18
 
 ### Changed

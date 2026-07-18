@@ -12,6 +12,7 @@ Convert land area. Compare values. Calculate land costs.
 ## Features
 
 - Bilingual English and French interface
+- Cohesive token-based design system with standardized typography, spacing, controls, cards, and outline icons
 - Streamlined native-style mobile dashboard and floating bottom navigation
 - Progressive Web App installation and offline support
 - Automatic conversion among all supported area units
@@ -26,6 +27,10 @@ Convert land area. Compare values. Calculate land costs.
 - Copy-to-clipboard controls for conversion and valuation results
 - Light, dark, and system appearance modes
 - GitHub Pages compatibility
+
+## Design system
+
+TerraCaraïbe v2.2.0 uses semantic design tokens for color, typography, spacing, radii, elevation, and control sizing. Shared component rules keep cards, buttons, form fields, navigation, focus states, and light/dark modes visually consistent as new modules are introduced. Icons are embedded as an offline-safe SVG symbol set rather than relying on emoji or external libraries.
 
 ## Unified favorites
 

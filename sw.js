@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "terracaraibe-v2.1.2";
+const CACHE_NAME = "terracaraibe-v2.2.0";
 const APP_FILES = [
   "./",
   "./index.html",

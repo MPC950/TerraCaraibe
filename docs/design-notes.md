@@ -1,23 +1,25 @@
-# Design Notes
+# TerraCaraïbe Design System
 
-## Product direction
+## Principles
 
-TerraCaraïbe is intended to become a practical land-measurement, valuation, currency, mapping, and agricultural-planning platform for Haiti and the Caribbean.
+- Content-first mobile layouts
+- Consistent semantic tokens rather than one-off values
+- Clear hierarchy with restrained decoration
+- Accessible focus states and minimum touch targets
+- Offline-safe assets suitable for a Progressive Web App
 
-## Interface principles
+## Foundations
 
-- Mobile-first and usable on smaller iPhone screens
-- French and English terminology treated as equal first-class interfaces
-- Haitian land units presented alongside SI and imperial units
-- Critical calculations kept visible and easy to verify
-- Advanced functions grouped into collapsible sections
-- Offline functionality retained wherever possible
+The interface uses shared tokens for brand and neutral colors, type scale, spacing, radii, shadows, and control heights. Components consume semantic tokens so that light, dark, and system modes remain aligned.
 
-## Technical principles
+## Components
 
-- Static deployment through GitHub Pages
-- No mandatory build process
-- Progressive enhancement and accessible semantic HTML
-- Local storage for non-sensitive preferences and cached public rate data
-- Versioned service-worker cache for reliable upgrades
-- Modular folder structure without unnecessary framework dependencies
+Standardized components include the application header, screen headings, launch cards, form cards, inputs, selects, primary and secondary buttons, filter controls, result cards, settings rows, toast messages, and floating bottom navigation.
+
+## Icons
+
+A single outline SVG symbol set is embedded in `index.html`. This keeps icon weight, dimensions, stroke treatment, and offline behavior consistent without an external dependency.
+
+## Expansion
+
+Future Parcel Planner and Plantation Planner modules should reuse existing tokens and components before introducing new patterns. New tokens should be semantic and broadly reusable.

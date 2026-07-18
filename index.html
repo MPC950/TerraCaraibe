@@ -15,6 +15,18 @@
   <title>TerraCaraïbe</title>
 </head>
 <body>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></symbol>
+    <symbol id="icon-convert" viewBox="0 0 24 24"><path d="M7 7h11"/><path d="m15 4 3 3-3 3"/><path d="M17 17H6"/><path d="m9 14-3 3 3 3"/></symbol>
+    <symbol id="icon-value" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M16 8.5c-.8-.9-2-1.5-3.5-1.5-2 0-3.5 1-3.5 2.5 0 3.7 7 1.6 7 5 0 1.5-1.5 2.5-3.5 2.5-1.6 0-3-.6-4-1.7"/><path d="M12 5v14"/></symbol>
+    <symbol id="icon-reference" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3Z"/><path d="M8 4v16"/><path d="M11 8h5"/><path d="M11 12h5"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="icon-swap" viewBox="0 0 24 24"><path d="M7 7h11"/><path d="m15 4 3 3-3 3"/><path d="M17 17H6"/><path d="m9 14-3 3 3 3"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 6v5h-5"/><path d="M4 18v-5h5"/><path d="M6.1 9a7 7 0 0 1 11.7-2.6L20 11"/><path d="m4 13 2.2 4.6A7 7 0 0 0 17.9 15"/></symbol>
+  </svg>
   <div class="app-shell">
     <header class="app-header"><h1>TerraCaraïbe</h1></header>
 
@@ -26,16 +38,16 @@
         </div>
         <div class="tool-grid">
           <button class="tool-launch-card" type="button" data-open-screen="convert">
-            <span class="tool-card-icon">↔</span><span><strong data-i18n="converter">Converter</strong><small data-i18n="converterHelp">Convert between 11 land-area units.</small></span><span>›</span>
+            <span class="tool-card-icon"><svg class="icon"><use href="#icon-convert"></use></svg></span><span><strong data-i18n="converter">Converter</strong><small data-i18n="converterHelp">Convert between 11 land-area units.</small></span><span class="tool-card-chevron"><svg class="icon"><use href="#icon-chevron-right"></use></svg></span>
           </button>
           <button class="tool-launch-card" type="button" data-open-screen="value">
-            <span class="tool-card-icon">$</span><span><strong data-i18n="landValue">Land value</strong><small data-i18n="valueHelp">Calculate cost per hectare, acre, carreau, and more.</small></span><span>›</span>
+            <span class="tool-card-icon"><svg class="icon"><use href="#icon-value"></use></svg></span><span><strong data-i18n="landValue">Land value</strong><small data-i18n="valueHelp">Calculate cost per hectare, acre, carreau, and more.</small></span><span class="tool-card-chevron"><svg class="icon"><use href="#icon-chevron-right"></use></svg></span>
           </button>
           <button class="tool-launch-card" type="button" data-open-screen="reference">
-            <span class="tool-card-icon">≡</span><span><strong data-i18n="reference">Reference</strong><small data-i18n="referenceHelp">Search and compare all supported units.</small></span><span>›</span>
+            <span class="tool-card-icon"><svg class="icon"><use href="#icon-reference"></use></svg></span><span><strong data-i18n="reference">Reference</strong><small data-i18n="referenceHelp">Search and compare all supported units.</small></span><span class="tool-card-chevron"><svg class="icon"><use href="#icon-chevron-right"></use></svg></span>
           </button>
           <button class="tool-launch-card" type="button" data-open-screen="settings">
-            <span class="tool-card-icon">⚙</span><span><strong data-i18n="settings">Settings</strong><small data-i18n="settingsHelp">Language, appearance, precision, and definitions.</small></span><span>›</span>
+            <span class="tool-card-icon"><svg class="icon"><use href="#icon-settings"></use></svg></span><span><strong data-i18n="settings">Settings</strong><small data-i18n="settingsHelp">Language, appearance, precision, and definitions.</small></span><span class="tool-card-chevron"><svg class="icon"><use href="#icon-chevron-right"></use></svg></span>
           </button>
         </div>
       </section>
@@ -48,7 +60,7 @@
           <p class="helper" data-i18n="decimalHelp">Use a period or comma for decimals.</p>
           <div class="unit-grid">
             <div><label class="field-label" for="fromUnit" data-i18n="from">From</label><select id="fromUnit"></select></div>
-            <button id="swapButton" class="swap-button" type="button" aria-label="Swap units"><span>⇄</span></button>
+            <button id="swapButton" class="swap-button" type="button" aria-label="Swap units"><svg class="icon"><use href="#icon-swap"></use></svg></button>
             <div><label class="field-label" for="toUnit" data-i18n="to">To</label><select id="toUnit"></select></div>
           </div>
         </article>
@@ -68,7 +80,7 @@
           </div>
         </article>
         <article class="rate-card">
-          <div class="rate-card-head"><div><span data-i18n="liveRate">Live rate</span><strong id="exchangeRateDisplay">1 USD = — HTG</strong></div><button id="refreshRateButton" class="icon-action" type="button" data-i18n="refreshRate">Refresh</button></div>
+          <div class="rate-card-head"><div><span data-i18n="liveRate">Live rate</span><strong id="exchangeRateDisplay">1 USD = — HTG</strong></div><button id="refreshRateButton" class="icon-action" type="button"><svg class="icon"><use href="#icon-refresh"></use></svg><span data-i18n="refreshRate">Refresh</span></button></div>
           <div class="rate-arrow">USD <span>↓</span> HTG</div>
           <label class="field-label" for="exchangeRateInput" data-i18n="manualRateField">Manual USD to HTG rate</label><input id="exchangeRateInput" inputmode="decimal" autocomplete="off" type="text" placeholder="132.00">
           <p id="exchangeRateStatus" class="helper rate-status" data-i18n="loadingRate">Loading live rate…</p>
@@ -96,16 +108,16 @@
           <div class="settings-row"><div><strong data-i18n="precision">Precision</strong><span data-i18n="precisionHelp">Number of decimal places shown in conversion results.</span></div><button id="settingsPrecisionButton" class="setting-control" type="button"><span id="settingsPrecisionValue">4</span></button></div>
         </article>
         <article class="app-card definitions-card"><h3 data-i18n="definitions">Definitions used</h3><ul><li><strong>1 carreau</strong> = 12,900 m²</li><li><strong>1 centième</strong> = 129 m²</li><li><strong>1 seizième</strong> = 806.25 m²</li><li><strong>1 tarea</strong> = 628.8 m²</li></ul><p class="note" data-i18n="notationNote">SI symbols are standardized. Abbreviations for traditional land units are customary and may vary between deeds and jurisdictions.</p></article>
-        <article class="about-card"><strong>TerraCaraïbe</strong><span>v2.1.2</span><p data-i18n="offlineReady">Works offline after the first visit.</p></article>
+        <article class="about-card"><strong>TerraCaraïbe</strong><span>v2.2.0</span><p data-i18n="offlineReady">Works offline after the first visit.</p></article>
       </section>
     </main>
 
     <nav class="bottom-nav" aria-label="Primary navigation">
-      <button class="bottom-nav-item active" data-screen-target="home" type="button"><span class="nav-icon">⌂</span><span data-i18n="home">Home</span></button>
-      <button class="bottom-nav-item" data-screen-target="convert" type="button"><span class="nav-icon">↔</span><span data-i18n="navConvert">Convert</span></button>
-      <button class="bottom-nav-item" data-screen-target="value" type="button"><span class="nav-icon">$</span><span data-i18n="navValue">Value</span></button>
-      <button class="bottom-nav-item" data-screen-target="reference" type="button"><span class="nav-icon">≡</span><span data-i18n="navReference">Reference</span></button>
-      <button class="bottom-nav-item" data-screen-target="settings" type="button"><span class="nav-icon">⚙</span><span data-i18n="settings">Settings</span></button>
+      <button class="bottom-nav-item active" data-screen-target="home" type="button"><svg class="nav-icon"><use href="#icon-home"></use></svg><span data-i18n="home">Home</span></button>
+      <button class="bottom-nav-item" data-screen-target="convert" type="button"><svg class="nav-icon"><use href="#icon-convert"></use></svg><span data-i18n="navConvert">Convert</span></button>
+      <button class="bottom-nav-item" data-screen-target="value" type="button"><svg class="nav-icon"><use href="#icon-value"></use></svg><span data-i18n="navValue">Value</span></button>
+      <button class="bottom-nav-item" data-screen-target="reference" type="button"><svg class="nav-icon"><use href="#icon-reference"></use></svg><span data-i18n="navReference">Reference</span></button>
+      <button class="bottom-nav-item" data-screen-target="settings" type="button"><svg class="nav-icon"><use href="#icon-settings"></use></svg><span data-i18n="settings">Settings</span></button>
     </nav>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
