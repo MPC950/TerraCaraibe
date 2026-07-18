@@ -1,21 +1,29 @@
 # Changelog
 
+All notable changes to TerraCaraïbe are documented here.
+
+The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
+
+## [2.1.0] - 2026-07-18
+
+### Added
+- Added a unified favorites system shared by the Reference and Land Value screens.
+- Added favorite controls to every cost-per-unit result card.
+- Added a Favorites-only filter to the Land Value screen.
+
+### Changed
+- Favorite units now sort ahead of non-favorite units in both Reference and Land Value.
+- Favorite selections continue to persist in browser storage without requiring an account.
+- Updated the application version and offline cache identifier.
+
 ## [2.0.0] - 2026-07-18
 
 ### Added
-- Native-style home dashboard with direct tool launch cards.
-- Floating five-tab navigation for Home, Convert, Value, Reference, and Settings.
-- Searchable unit reference with persistent favorites.
-- Copy actions on individual conversion and cost result cards.
-- Dedicated Settings screen for language, appearance, precision, and unit definitions.
-- Light, dark, and system appearance controls.
-- Improved live exchange-rate status card and manual-rate input.
+- Added a native-style home dashboard and floating five-tab navigation.
+- Added searchable unit results, unit favorites, copy actions, Settings, appearance controls, and an improved exchange-rate card.
 
 ### Changed
-- Rebuilt the interface around spacious cards and focused tool screens.
-- Replaced list-style results with individual readable result cards.
-- Moved global preferences out of the Units panel into Settings.
-- Updated the service-worker cache and application metadata for v2.0.0.
+- Rebuilt the interface around separate tool screens and spacious result cards.
 
 ## [1.9.0] - 2026-07-18
 

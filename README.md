@@ -7,30 +7,27 @@
 **App name:** TerraCaraïbe  
 **Positioning:** A bilingual land measurement, valuation, and currency tool designed for Haiti and the Caribbean.
 
-## Version 2.0 interface
-
-TerraCaraïbe v2.0 introduces a native-style home dashboard, floating bottom navigation, searchable and favoritable units, copyable result cards, and a dedicated Settings screen with language, appearance, and precision controls.
-
 ## Features
 
 - Bilingual English and French interface
-- Mobile-first interface optimized for iPhone
-- Progressive Web App installation
-- Offline area conversion after the first visit
+- Native-style mobile dashboard and floating bottom navigation
+- Progressive Web App installation and offline support
 - Automatic conversion among all supported area units
 - Land cost-per-unit calculator
-- Live USD-to-HTG exchange-rate retrieval
-- Manual exchange-rate override
-- Cached exchange rate for offline use
+- Unified favorites shared between Reference and Land Value
+- Favorites-only filters in both supported sections
+- Persistent favorite selections stored locally without an account
+- Live USD-to-HTG exchange-rate retrieval with cached and manual-rate fallbacks
 - Conversion among USD, HTG, and Haitian dollars
+- Searchable unit reference
 - Adjustable decimal precision
-- Copy-to-clipboard controls
-- Light and dark appearance support through the device color scheme
+- Copy-to-clipboard controls for conversion and valuation results
+- Light, dark, and system appearance modes
 - GitHub Pages compatibility
-- Collapsible mobile sections with smooth open/close animation
-- Rotating section chevrons
-- Remembered open sections between visits
-- Automatic scrolling to newly expanded sections
+
+## Unified favorites
+
+A unit favorited in the Reference screen is immediately favorited in the Land Value screen, and vice versa. Favorite units are shown first in both sections and may be isolated with the **Favorites only** filter. The selection is stored in the browser using `localStorage`, so it persists between visits without requiring an account.
 
 ## Supported area units
 
@@ -263,6 +260,6 @@ Potential future additions include:
 This application is a planning and reference tool. Verify survey measurements, deed terminology, local-unit definitions, exchange rates, and transaction values with qualified local professionals before relying on the results for legal, financial, or cadastral decisions.
 
 
-## Interface update in v2.0.0
+## Interface update in v1.9.0
 
 The header now contains only the TerraCaraïbe name. The language selector is available under the Units tab, and the four principal tools remain accessible through the fixed bottom navigation.
