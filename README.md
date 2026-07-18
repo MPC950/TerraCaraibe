@@ -7,6 +7,10 @@
 **App name:** TerraCaraïbe  
 **Positioning:** A bilingual land measurement, valuation, and currency tool designed for Haiti and the Caribbean.
 
+## Version 2.0 interface
+
+TerraCaraïbe v2.0 introduces a native-style home dashboard, floating bottom navigation, searchable and favoritable units, copyable result cards, and a dedicated Settings screen with language, appearance, and precision controls.
+
 ## Features
 
 - Bilingual English and French interface
@@ -259,6 +263,6 @@ Potential future additions include:
 This application is a planning and reference tool. Verify survey measurements, deed terminology, local-unit definitions, exchange rates, and transaction values with qualified local professionals before relying on the results for legal, financial, or cadastral decisions.
 
 
-## Interface update in v1.9.0
+## Interface update in v2.0.0
 
 The header now contains only the TerraCaraïbe name. The language selector is available under the Units tab, and the four principal tools remain accessible through the fixed bottom navigation.

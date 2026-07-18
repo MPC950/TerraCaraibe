@@ -1,7 +1,7 @@
 {
   "name": "TerraCaraïbe",
   "short_name": "TerraCaraïbe",
-  "description": "Bilingual land area, valuation, and currency tool for Haiti and the Caribbean.",
+  "description": "Native-style bilingual land area, valuation, and currency platform for Haiti and the Caribbean.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

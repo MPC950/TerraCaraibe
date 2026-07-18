@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0] - 2026-07-18
+
+### Added
+- Native-style home dashboard with direct tool launch cards.
+- Floating five-tab navigation for Home, Convert, Value, Reference, and Settings.
+- Searchable unit reference with persistent favorites.
+- Copy actions on individual conversion and cost result cards.
+- Dedicated Settings screen for language, appearance, precision, and unit definitions.
+- Light, dark, and system appearance controls.
+- Improved live exchange-rate status card and manual-rate input.
+
+### Changed
+- Rebuilt the interface around spacious cards and focused tool screens.
+- Replaced list-style results with individual readable result cards.
+- Moved global preferences out of the Units panel into Settings.
+- Updated the service-worker cache and application metadata for v2.0.0.
+
 ## [1.9.0] - 2026-07-18
 
 ### Changed
