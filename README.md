@@ -10,7 +10,7 @@
 ## Features
 
 - Bilingual English and French interface
-- Native-style mobile dashboard and floating bottom navigation
+- Streamlined native-style mobile dashboard and floating bottom navigation
 - Progressive Web App installation and offline support
 - Automatic conversion among all supported area units
 - Land cost-per-unit calculator

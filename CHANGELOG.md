@@ -4,6 +4,15 @@ All notable changes to TerraCaraïbe are documented here.
 
 The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
+## [2.1.1] - 2026-07-18
+
+### Changed
+- Removed the decorative hero card from the Home screen.
+- Reduced top spacing so the tool launcher begins closer to the application header.
+- Improved spacing, touch targets, hover, focus, and pressed states for dashboard tool cards.
+- Retained fully tappable cards, concise descriptions, icons, and navigation chevrons.
+- Updated the application version and offline cache identifier.
+
 ## [2.1.0] - 2026-07-18
 
 ### Added
