@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0b6b57">
+  <meta name="theme-color" content="#075d76">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="TerraCaraïbe">
-  <meta name="description" content="TerraCaraïbe is a bilingual English–French land area and cost converter for Haiti and the Caribbean.">
+  <meta name="description" content="TerraCaraïbe is a bilingual land-area, valuation, and currency tool for Haiti and the Caribbean.">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
   <link rel="icon" href="./assets/icons/icon-192.png">
@@ -15,109 +15,141 @@
   <title>TerraCaraïbe</title>
 </head>
 <body>
-  <div class="app-shell">
-    <header class="app-header">
-      <div>
-        <p class="eyebrow" data-i18n="landTools">Land tools</p>
-        <h1 data-i18n="title">TerraCaraïbe</h1>
+  <div class="app-frame">
+    <aside id="sidebar" class="sidebar" aria-label="Primary navigation">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">TC</div>
+        <div><strong>TerraCaraïbe</strong><span data-i18n="platformLabel">Caribbean land platform</span></div>
+        <button id="closeNavButton" class="icon-button close-nav" type="button" aria-label="Close navigation">×</button>
       </div>
-      <button id="languageButton" class="language-button" type="button" aria-label="Switch language">
-        <span id="languageLabel">FR</span>
-      </button>
-    </header>
 
-    <div class="sidebar"><h3>Dashboard</h3><div class="nav-item active">📐 Area Converter</div><div class="nav-item">💰 Land Valuation</div><div class="nav-item">🗺 Parcel Planner</div><div class="nav-item">🌴 Plantation Tools</div><div class="nav-item">🌎 Exchange Rates</div><div class="nav-item">⭐ Saved Projects</div><div class="nav-item">⚙ Settings</div></div><main>
-      <section class="accordion-card collapsible-section" data-section-id="conversion">
-        <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="conversionContent">
-          <span>
-            <span class="eyebrow" data-i18n="landTools">Land tools</span>
-            <span class="accordion-title" data-i18n="converter">Converter</span>
-          </span>
-          <span class="accordion-chevron" aria-hidden="true"></span>
+      <nav class="primary-nav">
+        <p class="nav-group-label" data-i18n="workspace">Workspace</p>
+        <button class="nav-link active" type="button" data-target="conversion" data-open="true">
+          <span class="nav-icon" aria-hidden="true">↔</span><span data-i18n="areaConverter">Area converter</span>
         </button>
-        <div id="conversionContent" class="accordion-content">
-          <div class="accordion-inner">
-            <label class="field-label" for="amount" data-i18n="amount">Amount</label>
-            <div class="amount-row">
-              <input id="amount" inputmode="decimal" autocomplete="off" type="text" value="1" aria-describedby="inputHelp">
-              <button id="clearButton" class="clear-button" type="button" data-i18n="clear">Clear</button>
-            </div>
-            <p id="inputHelp" class="helper" data-i18n="decimalHelp">Use a period or comma for decimals.</p>
-            <div class="unit-grid">
-              <div><label class="field-label" for="fromUnit" data-i18n="from">From</label><select id="fromUnit"></select></div>
-              <button id="swapButton" class="swap-button" type="button" aria-label="Swap units" title="Swap units"><span aria-hidden="true">⇄</span></button>
-              <div><label class="field-label" for="toUnit" data-i18n="to">To</label><select id="toUnit"></select></div>
-            </div>
-            <div class="result-panel" aria-live="polite">
-              <p class="result-label" data-i18n="result">Result</p>
-              <output id="result">10,000</output>
-              <p id="resultUnit" class="result-unit"></p>
-              <button id="copyButton" class="primary-button" type="button" data-i18n="copy">Copy result</button>
-            </div>
+        <button class="nav-link" type="button" data-target="cost" data-open="true">
+          <span class="nav-icon" aria-hidden="true">$</span><span data-i18n="landValuation">Land valuation</span>
+        </button>
+        <button class="nav-link" type="button" data-target="reference" data-open="true">
+          <span class="nav-icon" aria-hidden="true">≡</span><span data-i18n="conversionReference">Conversion reference</span>
+        </button>
+        <button class="nav-link" type="button" data-target="definitions" data-open="true">
+          <span class="nav-icon" aria-hidden="true">i</span><span data-i18n="unitDefinitions">Unit definitions</span>
+        </button>
+
+        <p class="nav-group-label nav-group-spaced" data-i18n="comingNext">Coming next</p>
+        <button class="nav-link is-disabled" type="button" disabled><span class="nav-icon">⌖</span><span data-i18n="parcelPlanner">Parcel planner</span><small data-i18n="soon">Soon</small></button>
+        <button class="nav-link is-disabled" type="button" disabled><span class="nav-icon">♧</span><span data-i18n="plantationTools">Plantation tools</span><small data-i18n="soon">Soon</small></button>
+        <button class="nav-link is-disabled" type="button" disabled><span class="nav-icon">▥</span><span data-i18n="reports">Reports</span><small data-i18n="soon">Soon</small></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span data-i18n="offlineReady">Works offline after the first visit.</span>
+        <small>v1.7.0</small>
+      </div>
+    </aside>
+
+    <div id="navScrim" class="nav-scrim" hidden></div>
+
+    <div class="app-body">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menuButton" class="icon-button menu-button" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button>
+          <div>
+            <p class="topbar-kicker" data-i18n="landTools">Land tools</p>
+            <h1 data-i18n="dashboardTitle">Land workspace</h1>
           </div>
         </div>
-      </section>
+        <div class="topbar-actions">
+          <span class="live-pill"><span class="status-dot"></span><span data-i18n="offlineCapable">Offline capable</span></span>
+          <button id="languageButton" class="language-button" type="button" aria-label="Switch language"><span id="languageLabel">FR</span></button>
+        </div>
+      </header>
 
-      <section class="accordion-card collapsible-section" data-section-id="cost">
-        <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="costContent">
-          <span><span class="eyebrow" data-i18n="landCost">Land cost</span><span class="accordion-title" data-i18n="costPerUnit">Cost per unit</span></span>
-          <span class="accordion-chevron" aria-hidden="true"></span>
-        </button>
-        <div id="costContent" class="accordion-content" hidden>
-          <div class="accordion-inner">
-            <div class="cost-input-grid">
-              <div><label class="field-label" for="landCostInput" data-i18n="totalCost">Total cost of this land</label><input id="landCostInput" inputmode="decimal" autocomplete="off" type="text" placeholder="0"></div>
-              <div><label class="field-label" for="currencyUnit" data-i18n="inputCurrency">Cost entered in</label><select id="currencyUnit"></select></div>
-              <div><label class="field-label" for="outputCurrency" data-i18n="outputCurrency">Show results in</label><select id="outputCurrency"></select></div>
-            </div>
-            <div class="exchange-rate-panel">
-              <div class="exchange-rate-heading">
-                <div><p class="result-label" data-i18n="liveExchangeRate">USD–HTG exchange rate</p><strong id="exchangeRateDisplay">1 USD = — HTG</strong></div>
-                <button id="refreshRateButton" class="rate-button" type="button" data-i18n="refreshRate">Refresh</button>
+      <main class="workspace">
+        <section class="welcome-panel">
+          <div>
+            <p class="eyebrow" data-i18n="welcomeEyebrow">TerraCaraïbe workspace</p>
+            <h2 data-i18n="welcomeTitle">Convert and value Caribbean land</h2>
+            <p data-i18n="welcomeText">Work with international, Haitian, and Dominican land units in one bilingual workspace.</p>
+          </div>
+          <div class="welcome-stat"><span data-i18n="supportedUnits">Supported units</span><strong>11</strong></div>
+        </section>
+
+        <section class="accordion-card collapsible-section" data-section-id="conversion">
+          <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="conversionContent">
+            <span class="section-heading"><span class="section-icon" aria-hidden="true">↔</span><span><span class="eyebrow" data-i18n="landTools">Land tools</span><span class="accordion-title" data-i18n="converter">Converter</span></span></span>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="conversionContent" class="accordion-content">
+            <div class="accordion-inner converter-layout">
+              <div class="form-workspace">
+                <label class="field-label" for="amount" data-i18n="amount">Amount</label>
+                <div class="amount-row"><input id="amount" inputmode="decimal" autocomplete="off" type="text" value="1" aria-describedby="inputHelp"><button id="clearButton" class="secondary-button" type="button" data-i18n="clear">Clear</button></div>
+                <p id="inputHelp" class="helper" data-i18n="decimalHelp">Use a period or comma for decimals.</p>
+                <div class="unit-grid">
+                  <div><label class="field-label" for="fromUnit" data-i18n="from">From</label><select id="fromUnit"></select></div>
+                  <button id="swapButton" class="swap-button" type="button" aria-label="Swap units" title="Swap units"><span aria-hidden="true">⇄</span></button>
+                  <div><label class="field-label" for="toUnit" data-i18n="to">To</label><select id="toUnit"></select></div>
+                </div>
               </div>
-              <label class="field-label" for="exchangeRateInput" data-i18n="rateInput">USD to HTG rate</label>
-              <input id="exchangeRateInput" inputmode="decimal" autocomplete="off" type="text" placeholder="132.00">
-              <p id="exchangeRateStatus" class="helper rate-status" data-i18n="loadingRate">Loading live rate…</p>
-              <p class="helper attribution"><span data-i18n="rateProvidedBy">Exchange-rate data provided by</span> <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">ExchangeRate-API</a>.</p>
+              <div class="result-panel" aria-live="polite">
+                <p class="result-label" data-i18n="result">Result</p>
+                <output id="result">10,000</output>
+                <p id="resultUnit" class="result-unit"></p>
+                <button id="copyButton" class="primary-button" type="button" data-i18n="copy">Copy result</button>
+              </div>
             </div>
-            <p class="helper" data-i18n="haitianDollarHelp">1 Haitian dollar (H$) equals 5 gourdes. The USD conversion uses the displayed live or manually entered rate.</p>
-            <div id="costResults" class="results-list" aria-live="polite"></div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="accordion-card collapsible-section" data-section-id="reference">
-        <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="referenceContent">
-          <span><span class="eyebrow" data-i18n="reference">Reference</span><span class="accordion-title" data-i18n="allConversions">All conversions</span></span>
-          <span class="accordion-actions"><span id="precisionControl" class="precision-control"><span data-i18n="precision">Precision</span>: <span id="precisionValue">4</span></span><span class="accordion-chevron" aria-hidden="true"></span></span>
-        </button>
-        <div id="referenceContent" class="accordion-content" hidden>
-          <div class="accordion-inner">
-            <button id="precisionButton" class="text-button precision-button" type="button"><span data-i18n="changePrecision">Change precision</span></button>
-            <div id="allResults" class="results-list"></div>
+        <section class="accordion-card collapsible-section" data-section-id="cost">
+          <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="costContent">
+            <span class="section-heading"><span class="section-icon" aria-hidden="true">$</span><span><span class="eyebrow" data-i18n="landCost">Land cost</span><span class="accordion-title" data-i18n="costPerUnit">Cost per unit</span></span></span>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="costContent" class="accordion-content" hidden>
+            <div class="accordion-inner">
+              <div class="cost-input-grid">
+                <div><label class="field-label" for="landCostInput" data-i18n="totalCost">Total cost of this land</label><input id="landCostInput" inputmode="decimal" autocomplete="off" type="text" placeholder="0"></div>
+                <div><label class="field-label" for="currencyUnit" data-i18n="inputCurrency">Cost entered in</label><select id="currencyUnit"></select></div>
+                <div><label class="field-label" for="outputCurrency" data-i18n="outputCurrency">Show results in</label><select id="outputCurrency"></select></div>
+              </div>
+              <div class="exchange-rate-panel">
+                <div class="exchange-rate-heading"><div><p class="result-label" data-i18n="liveExchangeRate">USD–HTG exchange rate</p><strong id="exchangeRateDisplay">1 USD = — HTG</strong></div><button id="refreshRateButton" class="secondary-button" type="button" data-i18n="refreshRate">Refresh</button></div>
+                <label class="field-label" for="exchangeRateInput" data-i18n="rateInput">USD to HTG rate</label>
+                <input id="exchangeRateInput" inputmode="decimal" autocomplete="off" type="text" placeholder="132.00">
+                <p id="exchangeRateStatus" class="helper rate-status" data-i18n="loadingRate">Loading live rate…</p>
+                <p class="helper attribution"><span data-i18n="rateProvidedBy">Exchange-rate data provided by</span> <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">ExchangeRate-API</a>.</p>
+              </div>
+              <p class="helper" data-i18n="haitianDollarHelp">1 Haitian dollar (H$) equals 5 gourdes. The USD conversion uses the displayed live or manually entered rate.</p>
+              <div id="costResults" class="results-list" aria-live="polite"></div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="accordion-card collapsible-section" data-section-id="definitions">
-        <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="definitionsContent">
-          <span><span class="eyebrow" data-i18n="reference">Reference</span><span class="accordion-title" data-i18n="definitions">Definitions used</span></span>
-          <span class="accordion-chevron" aria-hidden="true"></span>
-        </button>
-        <div id="definitionsContent" class="accordion-content" hidden>
-          <div class="accordion-inner notes-content">
-            <ul><li><strong>1 carreau</strong> = 12,900 m²</li><li><strong>1 centième</strong> = 129 m²</li><li><strong>1 seizième</strong> = 806.25 m²</li><li><strong>1 tarea</strong> = 628.8 m²</li></ul>
-            <p class="note" data-i18n="notationNote">SI symbols are standardized. Abbreviations for traditional land units are customary and may vary between deeds and jurisdictions.</p>
-          </div>
-        </div>
-      </section>
-    </main>
+        <section class="accordion-card collapsible-section" data-section-id="reference">
+          <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="referenceContent">
+            <span class="section-heading"><span class="section-icon" aria-hidden="true">≡</span><span><span class="eyebrow" data-i18n="reference">Reference</span><span class="accordion-title" data-i18n="allConversions">All conversions</span></span></span>
+            <span class="accordion-actions"><span id="precisionControl" class="precision-control"><span data-i18n="precision">Precision</span>: <span id="precisionValue">4</span></span><span class="accordion-chevron" aria-hidden="true"></span></span>
+          </button>
+          <div id="referenceContent" class="accordion-content" hidden><div class="accordion-inner"><button id="precisionButton" class="text-button precision-button" type="button"><span data-i18n="changePrecision">Change precision</span></button><div id="allResults" class="results-list"></div></div></div>
+        </section>
 
-    <footer>
-      <p data-i18n="offlineReady">Works offline after the first visit.</p>
-    </footer>
+        <section class="accordion-card collapsible-section" data-section-id="definitions">
+          <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="definitionsContent">
+            <span class="section-heading"><span class="section-icon" aria-hidden="true">i</span><span><span class="eyebrow" data-i18n="reference">Reference</span><span class="accordion-title" data-i18n="definitions">Definitions used</span></span></span>
+            <span class="accordion-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="definitionsContent" class="accordion-content" hidden><div class="accordion-inner notes-content"><ul><li><strong>1 carreau</strong> = 12,900 m²</li><li><strong>1 centième</strong> = 129 m²</li><li><strong>1 seizième</strong> = 806.25 m²</li><li><strong>1 tarea</strong> = 628.8 m²</li></ul><p class="note" data-i18n="notationNote">SI symbols are standardized. Abbreviations for traditional land units are customary and may vary between deeds and jurisdictions.</p></div></div>
+        </section>
+      </main>
+
+      <footer class="app-footer"><span>TerraCaraïbe v1.7.0</span><span data-i18n="offlineReady">Works offline after the first visit.</span></footer>
+    </div>
   </div>
-
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="./assets/js/app.js" defer></script>
 </body>

@@ -26,6 +26,23 @@ const DEFAULT_USD_HTG_RATE = 132;
 const translations = {
   en: {
     landTools: "Land tools",
+    platformLabel: "Caribbean land platform",
+    workspace: "Workspace",
+    areaConverter: "Area converter",
+    landValuation: "Land valuation",
+    conversionReference: "Conversion reference",
+    unitDefinitions: "Unit definitions",
+    comingNext: "Coming next",
+    parcelPlanner: "Parcel planner",
+    plantationTools: "Plantation tools",
+    reports: "Reports",
+    soon: "Soon",
+    dashboardTitle: "Land workspace",
+    offlineCapable: "Offline capable",
+    welcomeEyebrow: "TerraCaraïbe workspace",
+    welcomeTitle: "Convert and value Caribbean land",
+    welcomeText: "Work with international, Haitian, and Dominican land units in one bilingual workspace.",
+    supportedUnits: "Supported units",
     title: "TerraCaraïbe",
     converter: "Converter",
     amount: "Amount",
@@ -66,6 +83,23 @@ const translations = {
   },
   fr: {
     landTools: "Outils fonciers",
+    platformLabel: "Plateforme foncière caribéenne",
+    workspace: "Espace de travail",
+    areaConverter: "Convertisseur de superficie",
+    landValuation: "Évaluation foncière",
+    conversionReference: "Référence de conversion",
+    unitDefinitions: "Définitions des unités",
+    comingNext: "Prochainement",
+    parcelPlanner: "Planificateur de parcelle",
+    plantationTools: "Outils de plantation",
+    reports: "Rapports",
+    soon: "Bientôt",
+    dashboardTitle: "Espace foncier",
+    offlineCapable: "Disponible hors ligne",
+    welcomeEyebrow: "Espace TerraCaraïbe",
+    welcomeTitle: "Convertissez et évaluez les terres caribéennes",
+    welcomeText: "Utilisez les unités foncières internationales, haïtiennes et dominicaines dans un espace bilingue.",
+    supportedUnits: "Unités prises en charge",
     title: "TerraCaraïbe",
     converter: "Convertisseur",
     amount: "Valeur",
@@ -128,7 +162,11 @@ const els = {
   exchangeRateInput: document.querySelector("#exchangeRateInput"),
   exchangeRateDisplay: document.querySelector("#exchangeRateDisplay"),
   exchangeRateStatus: document.querySelector("#exchangeRateStatus"),
-  refreshRateButton: document.querySelector("#refreshRateButton")
+  refreshRateButton: document.querySelector("#refreshRateButton"),
+  menuButton: document.querySelector("#menuButton"),
+  closeNavButton: document.querySelector("#closeNavButton"),
+  navScrim: document.querySelector("#navScrim"),
+  navLinks: [...document.querySelectorAll(".nav-link[data-target]")]
 };
 
 let language = localStorage.getItem("area-language") || (navigator.language.startsWith("fr") ? "fr" : "en");
@@ -218,6 +256,40 @@ function initializeAccordions() {
   });
 }
 
+
+function setNavigationOpen(open) {
+  document.body.classList.toggle("nav-open", open);
+  els.menuButton?.setAttribute("aria-expanded", String(open));
+  if (els.navScrim) els.navScrim.hidden = !open;
+}
+
+function navigateToSection(sectionId) {
+  const section = document.querySelector(`[data-section-id="${sectionId}"]`);
+  if (!section) return;
+  const trigger = section.querySelector(".accordion-trigger");
+  if (trigger.getAttribute("aria-expanded") !== "true") {
+    setAccordionState(section, true);
+    saveOpenSections();
+  }
+  els.navLinks.forEach(link => link.classList.toggle("active", link.dataset.target === sectionId));
+  const top = section.getBoundingClientRect().top + window.scrollY - 104;
+  window.scrollTo({ top, behavior: "smooth" });
+  setNavigationOpen(false);
+}
+
+function initializeNavigation() {
+  els.menuButton?.addEventListener("click", () => setNavigationOpen(true));
+  els.closeNavButton?.addEventListener("click", () => setNavigationOpen(false));
+  els.navScrim?.addEventListener("click", () => setNavigationOpen(false));
+  els.navLinks.forEach(link => link.addEventListener("click", () => navigateToSection(link.dataset.target)));
+  document.addEventListener("keydown", event => { if (event.key === "Escape") setNavigationOpen(false); });
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
+    if (!visible) return;
+    els.navLinks.forEach(link => link.classList.toggle("active", link.dataset.target === visible.target.dataset.sectionId));
+  }, { rootMargin: "-25% 0px -60%", threshold: [0.05, 0.25, 0.5] });
+  accordionSections.forEach(section => observer.observe(section));
+}
 
 function parseLocalizedNumber(value) {
   const cleaned = value.trim().replace(/\s/g, "").replace(",", ".");
@@ -501,6 +573,7 @@ els.precisionButton.addEventListener("click", () => {
 
 els.precisionValue.textContent = precision;
 initializeAccordions();
+initializeNavigation();
 loadCachedRate();
 translateInterface();
 fetchLiveRate();

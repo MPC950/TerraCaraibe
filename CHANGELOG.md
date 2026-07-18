@@ -52,3 +52,23 @@ The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Modern dashboard visual refresh
 - Sidebar navigation
 - Updated design system
+
+## v1.7.0
+
+### Added
+- Functional responsive sidebar navigation
+- Mobile navigation drawer with backdrop and Escape-key support
+- Dashboard welcome panel and application status indicators
+- Active-section navigation tracking
+- Scalable navigation placeholders for Parcel Planner, Plantation Tools, and Reports
+
+### Improved
+- Rebuilt the visual design system with Caribbean blue, green, and sand accents
+- Redesigned form controls, result panels, cards, navigation, and responsive spacing
+- Improved bilingual labels throughout the new interface
+- Improved dark-mode styling and accessibility focus states
+- Updated PWA theme colors and service-worker cache version
+
+### Fixed
+- Replaced the static v1.6 sidebar with working navigation
+- Corrected desktop and mobile layout behavior
