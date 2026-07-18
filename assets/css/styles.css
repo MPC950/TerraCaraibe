@@ -536,3 +536,22 @@ footer p { margin-bottom: 0; }
 @media (max-width: 420px) {
   .precision-control { display: none; }
 }
+
+
+/* v1.6 dashboard refresh */
+:root{
+ --primary:#0A5D8F;--secondary:#2F855A;--bg:#F7F9FB;--card:#fff;--border:#D9E2EC;
+}
+body{background:var(--bg);}
+.app-shell{max-width:1400px;display:grid;grid-template-columns:260px 1fr;gap:24px;padding:24px;}
+.app-header{grid-column:1/-1;background:var(--card);padding:18px 24px;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+main{display:grid;grid-template-columns:1fr;gap:20px}
+.sidebar{background:#12324a;color:#fff;border-radius:14px;padding:20px;height:fit-content}
+.sidebar h3{margin-top:0}
+.nav-item{padding:10px 12px;border-radius:8px;margin:6px 0}
+.nav-item.active{background:var(--primary)}
+.accordion-card{border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+@media(max-width:900px){
+ .app-shell{grid-template-columns:1fr}
+ .sidebar{display:none}
+}

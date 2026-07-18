@@ -46,3 +46,9 @@ The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 ### Added
 
 - Initial bilingual land-area converter and installable PWA.
+
+
+## v1.6.0
+- Modern dashboard visual refresh
+- Sidebar navigation
+- Updated design system
