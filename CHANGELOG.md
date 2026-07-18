@@ -4,6 +4,13 @@ All notable changes to TerraCaraïbe are documented here.
 
 The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
+## [2.1.2] - 2026-07-18
+
+### Changed
+- Shortened the Home screen tagline to: “Convert land area. Compare values. Calculate land costs.”
+- Updated the corresponding French tagline for consistency.
+- Updated the application version and offline cache identifier.
+
 ## [2.1.1] - 2026-07-18
 
 ### Changed

@@ -1,5 +1,7 @@
 # TerraCaraïbe
 
+Convert land area. Compare values. Calculate land costs.
+
 **TerraCaraïbe** is a mobile-first English/French progressive web app for converting land-area units, calculating land cost per unit, and converting prices between U.S. dollars and Haitian gourdes. It is designed for Haiti and the wider Caribbean, works with GitHub Pages, and can be installed on an iPhone home screen.
 
 ## Brand
