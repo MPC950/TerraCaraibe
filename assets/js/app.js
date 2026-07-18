@@ -26,24 +26,8 @@ const DEFAULT_USD_HTG_RATE = 132;
 const translations = {
   en: {
     landTools: "Land tools",
-    platformLabel: "Caribbean land platform",
-    workspace: "Workspace",
-    areaConverter: "Area converter",
-    landValuation: "Land valuation",
-    conversionReference: "Conversion reference",
-    unitDefinitions: "Unit definitions",
-    comingNext: "Coming next",
-    parcelPlanner: "Parcel planner",
-    plantationTools: "Plantation tools",
-    reports: "Reports",
-    soon: "Soon",
-    dashboardTitle: "Land workspace",
     navConvert: "Convert", navValue: "Value", navReference: "Reference", navUnits: "Units",
-    offlineCapable: "Offline capable",
-    welcomeEyebrow: "TerraCaraïbe workspace",
-    welcomeTitle: "Convert and value Caribbean land",
-    welcomeText: "Work with international, Haitian, and Dominican land units in one bilingual workspace.",
-    supportedUnits: "Supported units",
+    languageSetting: "Interface language", languageHelp: "Switch between English and French.",
     title: "TerraCaraïbe",
     converter: "Converter",
     amount: "Amount",
@@ -84,24 +68,8 @@ const translations = {
   },
   fr: {
     landTools: "Outils fonciers",
-    platformLabel: "Plateforme foncière caribéenne",
-    workspace: "Espace de travail",
-    areaConverter: "Convertisseur de superficie",
-    landValuation: "Évaluation foncière",
-    conversionReference: "Référence de conversion",
-    unitDefinitions: "Définitions des unités",
-    comingNext: "Prochainement",
-    parcelPlanner: "Planificateur de parcelle",
-    plantationTools: "Outils de plantation",
-    reports: "Rapports",
-    soon: "Bientôt",
-    dashboardTitle: "Espace foncier",
     navConvert: "Convertir", navValue: "Valeur", navReference: "Référence", navUnits: "Unités",
-    offlineCapable: "Disponible hors ligne",
-    welcomeEyebrow: "Espace TerraCaraïbe",
-    welcomeTitle: "Convertissez et évaluez les terres caribéennes",
-    welcomeText: "Utilisez les unités foncières internationales, haïtiennes et dominicaines dans un espace bilingue.",
-    supportedUnits: "Unités prises en charge",
+    languageSetting: "Langue de l’interface", languageHelp: "Passez de l’anglais au français.",
     title: "TerraCaraïbe",
     converter: "Convertisseur",
     amount: "Valeur",
@@ -166,9 +134,7 @@ const els = {
   exchangeRateStatus: document.querySelector("#exchangeRateStatus"),
   refreshRateButton: document.querySelector("#refreshRateButton"),
   bottomNavButtons: [...document.querySelectorAll(".bottom-nav-item[data-tool]")],
-  toolPanels: [...document.querySelectorAll(".tool-panel")],
-  workspaceTitle: document.querySelector("#workspaceTitle"),
-  toolIntro: document.querySelector(".tool-intro")
+  toolPanels: [...document.querySelectorAll(".tool-panel")]
 };
 
 let language = localStorage.getItem("area-language") || (navigator.language.startsWith("fr") ? "fr" : "en");
@@ -179,51 +145,28 @@ let rateSource = "default";
 let rateUpdatedAt = null;
 
 const TOOL_STATE_KEY = "terracaraibe-active-tool";
-const toolTitleKeys = {
-  conversion: "areaConverter",
-  cost: "landValuation",
-  reference: "conversionReference",
-  definitions: "unitDefinitions"
-};
 
 function activateTool(toolId, { persist = true } = {}) {
   if (!els.toolPanels.some(panel => panel.dataset.sectionId === toolId)) toolId = "conversion";
-
   els.toolPanels.forEach(panel => {
     const active = panel.dataset.sectionId === toolId;
     panel.hidden = !active;
     panel.classList.toggle("is-active", active);
     panel.setAttribute("aria-hidden", String(!active));
     const content = panel.querySelector(".accordion-content");
-    const trigger = panel.querySelector(".accordion-trigger");
-    if (content) {
-      content.hidden = false;
-      content.classList.add("is-open");
-      content.style.height = "auto";
-    }
-    if (trigger) trigger.setAttribute("aria-expanded", "true");
+    if (content) { content.hidden = false; content.classList.add("is-open"); content.style.height = "auto"; }
   });
-
   els.bottomNavButtons.forEach(button => {
     const active = button.dataset.tool === toolId;
     button.classList.toggle("active", active);
     button.setAttribute("aria-selected", String(active));
   });
-
-  if (els.toolIntro) els.toolIntro.hidden = toolId !== "conversion";
-  if (els.workspaceTitle) {
-    const key = toolTitleKeys[toolId];
-    els.workspaceTitle.textContent = translations[language][key];
-    els.workspaceTitle.dataset.i18n = key;
-  }
   if (persist) localStorage.setItem(TOOL_STATE_KEY, toolId);
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
 function initializeToolNavigation() {
-  els.bottomNavButtons.forEach(button => {
-    button.addEventListener("click", () => activateTool(button.dataset.tool));
-  });
+  els.bottomNavButtons.forEach(button => button.addEventListener("click", () => activateTool(button.dataset.tool)));
   activateTool(localStorage.getItem(TOOL_STATE_KEY) || "conversion", { persist: false });
 }
 

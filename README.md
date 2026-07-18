@@ -257,3 +257,8 @@ Potential future additions include:
 ## Disclaimer
 
 This application is a planning and reference tool. Verify survey measurements, deed terminology, local-unit definitions, exchange rates, and transaction values with qualified local professionals before relying on the results for legal, financial, or cadastral decisions.
+
+
+## Interface update in v1.9.0
+
+The header now contains only the TerraCaraïbe name. The language selector is available under the Units tab, and the four principal tools remain accessible through the fixed bottom navigation.

@@ -1,16 +1,12 @@
 # Changelog
 
-## v1.8.0
+## [1.9.0] - 2026-07-18
 
-### Added
-- Fixed bottom navigation with icons for the four primary tools.
-- Dedicated tool screens for conversion, valuation, reference conversions, and unit definitions.
-- Persistent active-tool selection between visits.
-
-### Improved
-- Replaced the long scrolling workspace with a focused tabbed interface.
-- Improved one-handed mobile navigation and safe-area support.
-- Preserved desktop usability with a centered floating navigation dock.
+### Changed
+- Simplified the application header to display only the TerraCaraïbe name.
+- Moved the English/French language switch to the Units screen.
+- Retained bottom navigation and separate tool screens.
+- Reduced header height and removed secondary branding text and controls.
 
 All notable changes to TerraCaraïbe are documented here.
 
@@ -58,29 +54,3 @@ The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 ### Added
 
 - Initial bilingual land-area converter and installable PWA.
-
-
-## v1.6.0
-- Modern dashboard visual refresh
-- Sidebar navigation
-- Updated design system
-
-## v1.7.0
-
-### Added
-- Functional responsive sidebar navigation
-- Mobile navigation drawer with backdrop and Escape-key support
-- Dashboard welcome panel and application status indicators
-- Active-section navigation tracking
-- Scalable navigation placeholders for Parcel Planner, Plantation Tools, and Reports
-
-### Improved
-- Rebuilt the visual design system with Caribbean blue, green, and sand accents
-- Redesigned form controls, result panels, cards, navigation, and responsive spacing
-- Improved bilingual labels throughout the new interface
-- Improved dark-mode styling and accessibility focus states
-- Updated PWA theme colors and service-worker cache version
-
-### Fixed
-- Replaced the static v1.6 sidebar with working navigation
-- Corrected desktop and mobile layout behavior

@@ -21,7 +21,3 @@ TerraCaraïbe is intended to become a practical land-measurement, valuation, cur
 - Local storage for non-sensitive preferences and cached public rate data
 - Versioned service-worker cache for reliable upgrades
 - Modular folder structure without unnecessary framework dependencies
-
-## v1.8.0 Interface System
-
-The application now uses a responsive dashboard shell. Desktop navigation remains persistent, while screens below 960 px use an off-canvas drawer. Existing tools remain accordion-based within the workspace so navigation can deep-link to and open each module without changing calculation behavior.

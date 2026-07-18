@@ -4,11 +4,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<meta content="#075d76" name="theme-color"/>
+<meta content="#0b6b57" name="theme-color"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="default" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="TerraCaraïbe" name="apple-mobile-web-app-title"/>
-<meta content="TerraCaraïbe is a bilingual land-area, valuation, and currency tool for Haiti and the Caribbean." name="description"/>
+<meta content="TerraCaraïbe is a bilingual English–French land area and cost converter for Haiti and the Caribbean." name="description"/>
 <link href="./manifest.webmanifest" rel="manifest"/>
 <link href="./assets/icons/apple-touch-icon.png" rel="apple-touch-icon"/>
 <link href="./assets/icons/icon-192.png" rel="icon"/>
@@ -16,48 +16,29 @@
 <title>TerraCaraïbe</title>
 </head>
 <body>
-<div class="app-frame">
-
-
-<div class="app-body">
-<header class="topbar">
-<div class="topbar-left">
-
-<div>
-<p class="topbar-kicker" data-i18n="landTools">Land tools</p>
-<h1 data-i18n="dashboardTitle" id="workspaceTitle">Land workspace</h1>
-</div>
-</div>
-<div class="topbar-actions">
-<span class="live-pill"><span class="status-dot"></span><span data-i18n="offlineCapable">Offline capable</span></span>
-<button aria-label="Switch language" class="language-button" id="languageButton" type="button"><span id="languageLabel">FR</span></button>
-</div>
-</header>
-<main class="workspace">
-<section class="welcome-panel tool-intro" data-tool-intro="conversion">
-<div>
-<p class="eyebrow" data-i18n="welcomeEyebrow">TerraCaraïbe workspace</p>
-<h2 data-i18n="welcomeTitle">Convert and value Caribbean land</h2>
-<p data-i18n="welcomeText">Work with international, Haitian, and Dominican land units in one bilingual workspace.</p>
-</div>
-<div class="welcome-stat"><span data-i18n="supportedUnits">Supported units</span><strong>11</strong></div>
-</section>
+<div class="app-shell">
+<header class="app-header simple-header"><h1>TerraCaraïbe</h1></header>
+<main>
 <section aria-hidden="false" class="accordion-card tool-panel is-active" data-section-id="conversion" role="tabpanel" tabindex="0">
 <button aria-controls="conversionContent" aria-expanded="true" class="accordion-trigger tool-panel-heading" tabindex="-1" type="button">
-<span class="section-heading"><span aria-hidden="true" class="section-icon">↔</span><span><span class="eyebrow" data-i18n="landTools">Land tools</span><span class="accordion-title" data-i18n="converter">Converter</span></span></span>
+<span>
+<span class="eyebrow" data-i18n="landTools">Land tools</span>
+<span class="accordion-title" data-i18n="converter">Converter</span>
+</span>
 <span aria-hidden="true" class="accordion-chevron"></span>
 </button>
 <div class="accordion-content is-open" id="conversionContent" style="height:auto">
-<div class="accordion-inner converter-layout">
-<div class="form-workspace">
+<div class="accordion-inner">
 <label class="field-label" data-i18n="amount" for="amount">Amount</label>
-<div class="amount-row"><input aria-describedby="inputHelp" autocomplete="off" id="amount" inputmode="decimal" type="text" value="1"/><button class="secondary-button" data-i18n="clear" id="clearButton" type="button">Clear</button></div>
+<div class="amount-row">
+<input aria-describedby="inputHelp" autocomplete="off" id="amount" inputmode="decimal" type="text" value="1"/>
+<button class="clear-button" data-i18n="clear" id="clearButton" type="button">Clear</button>
+</div>
 <p class="helper" data-i18n="decimalHelp" id="inputHelp">Use a period or comma for decimals.</p>
 <div class="unit-grid">
 <div><label class="field-label" data-i18n="from" for="fromUnit">From</label><select id="fromUnit"></select></div>
 <button aria-label="Swap units" class="swap-button" id="swapButton" title="Swap units" type="button"><span aria-hidden="true">⇄</span></button>
 <div><label class="field-label" data-i18n="to" for="toUnit">To</label><select id="toUnit"></select></div>
-</div>
 </div>
 <div aria-live="polite" class="result-panel">
 <p class="result-label" data-i18n="result">Result</p>
@@ -70,7 +51,7 @@
 </section>
 <section aria-hidden="true" class="accordion-card tool-panel" data-section-id="cost" hidden="" role="tabpanel" tabindex="0">
 <button aria-controls="costContent" aria-expanded="true" class="accordion-trigger tool-panel-heading" tabindex="-1" type="button">
-<span class="section-heading"><span aria-hidden="true" class="section-icon">$</span><span><span class="eyebrow" data-i18n="landCost">Land cost</span><span class="accordion-title" data-i18n="costPerUnit">Cost per unit</span></span></span>
+<span><span class="eyebrow" data-i18n="landCost">Land cost</span><span class="accordion-title" data-i18n="costPerUnit">Cost per unit</span></span>
 <span aria-hidden="true" class="accordion-chevron"></span>
 </button>
 <div class="accordion-content is-open" id="costContent" style="height:auto">
@@ -81,7 +62,10 @@
 <div><label class="field-label" data-i18n="outputCurrency" for="outputCurrency">Show results in</label><select id="outputCurrency"></select></div>
 </div>
 <div class="exchange-rate-panel">
-<div class="exchange-rate-heading"><div><p class="result-label" data-i18n="liveExchangeRate">USD–HTG exchange rate</p><strong id="exchangeRateDisplay">1 USD = — HTG</strong></div><button class="secondary-button" data-i18n="refreshRate" id="refreshRateButton" type="button">Refresh</button></div>
+<div class="exchange-rate-heading">
+<div><p class="result-label" data-i18n="liveExchangeRate">USD–HTG exchange rate</p><strong id="exchangeRateDisplay">1 USD = — HTG</strong></div>
+<button class="rate-button" data-i18n="refreshRate" id="refreshRateButton" type="button">Refresh</button>
+</div>
 <label class="field-label" data-i18n="rateInput" for="exchangeRateInput">USD to HTG rate</label>
 <input autocomplete="off" id="exchangeRateInput" inputmode="decimal" placeholder="132.00" type="text"/>
 <p class="helper rate-status" data-i18n="loadingRate" id="exchangeRateStatus">Loading live rate…</p>
@@ -94,30 +78,37 @@
 </section>
 <section aria-hidden="true" class="accordion-card tool-panel" data-section-id="reference" hidden="" role="tabpanel" tabindex="0">
 <button aria-controls="referenceContent" aria-expanded="true" class="accordion-trigger tool-panel-heading" tabindex="-1" type="button">
-<span class="section-heading"><span aria-hidden="true" class="section-icon">≡</span><span><span class="eyebrow" data-i18n="reference">Reference</span><span class="accordion-title" data-i18n="allConversions">All conversions</span></span></span>
+<span><span class="eyebrow" data-i18n="reference">Reference</span><span class="accordion-title" data-i18n="allConversions">All conversions</span></span>
 <span class="accordion-actions"><span class="precision-control" id="precisionControl"><span data-i18n="precision">Precision</span>: <span id="precisionValue">4</span></span><span aria-hidden="true" class="accordion-chevron"></span></span>
 </button>
-<div class="accordion-content is-open" id="referenceContent" style="height:auto"><div class="accordion-inner"><button class="text-button precision-button" id="precisionButton" type="button"><span data-i18n="changePrecision">Change precision</span></button><div class="results-list" id="allResults"></div></div></div>
+<div class="accordion-content is-open" id="referenceContent" style="height:auto">
+<div class="accordion-inner">
+<button class="text-button precision-button" id="precisionButton" type="button"><span data-i18n="changePrecision">Change precision</span></button>
+<div class="results-list" id="allResults"></div>
+</div>
+</div>
 </section>
 <section aria-hidden="true" class="accordion-card tool-panel" data-section-id="definitions" hidden="" role="tabpanel" tabindex="0">
 <button aria-controls="definitionsContent" aria-expanded="true" class="accordion-trigger tool-panel-heading" tabindex="-1" type="button">
-<span class="section-heading"><span aria-hidden="true" class="section-icon">i</span><span><span class="eyebrow" data-i18n="reference">Reference</span><span class="accordion-title" data-i18n="definitions">Definitions used</span></span></span>
+<span><span class="eyebrow" data-i18n="reference">Reference</span><span class="accordion-title" data-i18n="definitions">Definitions used</span></span>
 <span aria-hidden="true" class="accordion-chevron"></span>
 </button>
-<div class="accordion-content is-open" id="definitionsContent" style="height:auto"><div class="accordion-inner notes-content"><ul><li><strong>1 carreau</strong> = 12,900 m²</li><li><strong>1 centième</strong> = 129 m²</li><li><strong>1 seizième</strong> = 806.25 m²</li><li><strong>1 tarea</strong> = 628.8 m²</li></ul><p class="note" data-i18n="notationNote">SI symbols are standardized. Abbreviations for traditional land units are customary and may vary between deeds and jurisdictions.</p></div></div>
+<div class="accordion-content is-open" id="definitionsContent" style="height:auto">
+<div class="accordion-inner notes-content"><div class="settings-row"><div><strong data-i18n="languageSetting">Interface language</strong><span data-i18n="languageHelp">Switch between English and French.</span></div><button aria-label="Switch language" class="language-button" id="languageButton" type="button"><span id="languageLabel">FR</span></button></div>
+<ul><li><strong>1 carreau</strong> = 12,900 m²</li><li><strong>1 centième</strong> = 129 m²</li><li><strong>1 seizième</strong> = 806.25 m²</li><li><strong>1 tarea</strong> = 628.8 m²</li></ul>
+<p class="note" data-i18n="notationNote">SI symbols are standardized. Abbreviations for traditional land units are customary and may vary between deeds and jurisdictions.</p>
+</div>
+</div>
 </section>
 </main>
 <nav aria-label="Primary tools" class="bottom-nav">
-<button aria-selected="true" class="bottom-nav-item active" data-tool="conversion" type="button">
-<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3 3m-3-3 3-3"></path></svg><span data-i18n="navConvert">Convert</span></button>
-<button aria-selected="false" class="bottom-nav-item" data-tool="cost" type="button">
-<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2v20m5-16.5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg><span data-i18n="navValue">Value</span></button>
-<button aria-selected="false" class="bottom-nav-item" data-tool="reference" type="button">
-<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"></path></svg><span data-i18n="navReference">Reference</span></button>
-<button aria-selected="false" class="bottom-nav-item" data-tool="definitions" type="button">
-<svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6m0-10h.01"></path></svg><span data-i18n="navUnits">Units</span></button>
-</nav><footer class="app-footer"><span>TerraCaraïbe v1.8.0</span><span data-i18n="offlineReady">Works offline after the first visit.</span></footer>
-</div>
+<button aria-selected="true" class="bottom-nav-item active" data-tool="conversion" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3 3m-3-3 3-3"></path></svg><span data-i18n="navConvert">Convert</span></button>
+<button aria-selected="false" class="bottom-nav-item" data-tool="cost" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2v20m5-16.5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg><span data-i18n="navValue">Value</span></button>
+<button aria-selected="false" class="bottom-nav-item" data-tool="reference" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"></path></svg><span data-i18n="navReference">Reference</span></button>
+<button aria-selected="false" class="bottom-nav-item" data-tool="definitions" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6m0-10h.01"></path></svg><span data-i18n="navUnits">Units</span></button>
+</nav><footer>
+<p data-i18n="offlineReady">Works offline after the first visit.</p>
+</footer>
 </div>
 <div aria-live="polite" class="toast" id="toast" role="status"></div>
 <script defer="" src="./assets/js/app.js"></script>

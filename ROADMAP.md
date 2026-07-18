@@ -42,9 +42,3 @@ This roadmap is directional. Features should be developed in small, testable bra
 - Keep `main` deployable at all times.
 - Update `CHANGELOG.md` in each release.
 - Increment the service-worker cache version whenever deployable assets change.
-
-### Completed in v1.8.0
-- Responsive dashboard shell
-- Functional sidebar and mobile navigation drawer
-- Reusable visual component system
-- Future-module navigation structure
