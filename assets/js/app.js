@@ -38,6 +38,7 @@ const translations = {
     reports: "Reports",
     soon: "Soon",
     dashboardTitle: "Land workspace",
+    navConvert: "Convert", navValue: "Value", navReference: "Reference", navUnits: "Units",
     offlineCapable: "Offline capable",
     welcomeEyebrow: "TerraCaraïbe workspace",
     welcomeTitle: "Convert and value Caribbean land",
@@ -95,6 +96,7 @@ const translations = {
     reports: "Rapports",
     soon: "Bientôt",
     dashboardTitle: "Espace foncier",
+    navConvert: "Convertir", navValue: "Valeur", navReference: "Référence", navUnits: "Unités",
     offlineCapable: "Disponible hors ligne",
     welcomeEyebrow: "Espace TerraCaraïbe",
     welcomeTitle: "Convertissez et évaluez les terres caribéennes",
@@ -163,10 +165,10 @@ const els = {
   exchangeRateDisplay: document.querySelector("#exchangeRateDisplay"),
   exchangeRateStatus: document.querySelector("#exchangeRateStatus"),
   refreshRateButton: document.querySelector("#refreshRateButton"),
-  menuButton: document.querySelector("#menuButton"),
-  closeNavButton: document.querySelector("#closeNavButton"),
-  navScrim: document.querySelector("#navScrim"),
-  navLinks: [...document.querySelectorAll(".nav-link[data-target]")]
+  bottomNavButtons: [...document.querySelectorAll(".bottom-nav-item[data-tool]")],
+  toolPanels: [...document.querySelectorAll(".tool-panel")],
+  workspaceTitle: document.querySelector("#workspaceTitle"),
+  toolIntro: document.querySelector(".tool-intro")
 };
 
 let language = localStorage.getItem("area-language") || (navigator.language.startsWith("fr") ? "fr" : "en");
@@ -176,119 +178,53 @@ let usdHtgRate = DEFAULT_USD_HTG_RATE;
 let rateSource = "default";
 let rateUpdatedAt = null;
 
-const ACCORDION_STATE_KEY = "terracaraibe-open-sections";
-const accordionSections = [...document.querySelectorAll(".collapsible-section")];
+const TOOL_STATE_KEY = "terracaraibe-active-tool";
+const toolTitleKeys = {
+  conversion: "areaConverter",
+  cost: "landValuation",
+  reference: "conversionReference",
+  definitions: "unitDefinitions"
+};
 
-function getSavedOpenSections() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(ACCORDION_STATE_KEY));
-    return Array.isArray(saved) ? saved : ["conversion"];
-  } catch (_) {
-    return ["conversion"];
-  }
-}
+function activateTool(toolId, { persist = true } = {}) {
+  if (!els.toolPanels.some(panel => panel.dataset.sectionId === toolId)) toolId = "conversion";
 
-function saveOpenSections() {
-  const openIds = accordionSections
-    .filter(section => section.querySelector(".accordion-trigger").getAttribute("aria-expanded") === "true")
-    .map(section => section.dataset.sectionId);
-  localStorage.setItem(ACCORDION_STATE_KEY, JSON.stringify(openIds));
-}
-
-function setAccordionState(section, open, { animate = true, scroll = false } = {}) {
-  const trigger = section.querySelector(".accordion-trigger");
-  const content = section.querySelector(".accordion-content");
-  trigger.setAttribute("aria-expanded", String(open));
-
-  if (!animate) {
-    content.style.transition = "none";
-    content.hidden = !open;
-    content.classList.toggle("is-open", open);
-    content.style.height = open ? "auto" : "0px";
-    requestAnimationFrame(() => { content.style.transition = ""; });
-    return;
-  }
-
-  if (open) {
-    content.hidden = false;
-    content.style.height = "0px";
-    content.classList.add("is-open");
-    requestAnimationFrame(() => {
-      content.style.height = `${content.scrollHeight}px`;
-    });
-    const onOpened = event => {
-      if (event.propertyName !== "height") return;
+  els.toolPanels.forEach(panel => {
+    const active = panel.dataset.sectionId === toolId;
+    panel.hidden = !active;
+    panel.classList.toggle("is-active", active);
+    panel.setAttribute("aria-hidden", String(!active));
+    const content = panel.querySelector(".accordion-content");
+    const trigger = panel.querySelector(".accordion-trigger");
+    if (content) {
+      content.hidden = false;
+      content.classList.add("is-open");
       content.style.height = "auto";
-      content.removeEventListener("transitionend", onOpened);
-      if (scroll) {
-        const top = section.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-    };
-    content.addEventListener("transitionend", onOpened);
-  } else {
-    content.style.height = `${content.scrollHeight}px`;
-    requestAnimationFrame(() => {
-      content.style.height = "0px";
-      content.classList.remove("is-open");
-    });
-    const onClosed = event => {
-      if (event.propertyName !== "height") return;
-      content.hidden = true;
-      content.removeEventListener("transitionend", onClosed);
-    };
-    content.addEventListener("transitionend", onClosed);
-  }
-}
-
-function initializeAccordions() {
-  const saved = new Set(getSavedOpenSections());
-  accordionSections.forEach(section => {
-    const shouldOpen = saved.has(section.dataset.sectionId);
-    setAccordionState(section, shouldOpen, { animate: false });
-    section.querySelector(".accordion-trigger").addEventListener("click", event => {
-      if (event.target.closest("#precisionButton")) return;
-      const trigger = section.querySelector(".accordion-trigger");
-      const open = trigger.getAttribute("aria-expanded") !== "true";
-      setAccordionState(section, open, { scroll: open });
-      saveOpenSections();
-    });
+    }
+    if (trigger) trigger.setAttribute("aria-expanded", "true");
   });
-}
 
+  els.bottomNavButtons.forEach(button => {
+    const active = button.dataset.tool === toolId;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-selected", String(active));
+  });
 
-function setNavigationOpen(open) {
-  document.body.classList.toggle("nav-open", open);
-  els.menuButton?.setAttribute("aria-expanded", String(open));
-  if (els.navScrim) els.navScrim.hidden = !open;
-}
-
-function navigateToSection(sectionId) {
-  const section = document.querySelector(`[data-section-id="${sectionId}"]`);
-  if (!section) return;
-  const trigger = section.querySelector(".accordion-trigger");
-  if (trigger.getAttribute("aria-expanded") !== "true") {
-    setAccordionState(section, true);
-    saveOpenSections();
+  if (els.toolIntro) els.toolIntro.hidden = toolId !== "conversion";
+  if (els.workspaceTitle) {
+    const key = toolTitleKeys[toolId];
+    els.workspaceTitle.textContent = translations[language][key];
+    els.workspaceTitle.dataset.i18n = key;
   }
-  els.navLinks.forEach(link => link.classList.toggle("active", link.dataset.target === sectionId));
-  const top = section.getBoundingClientRect().top + window.scrollY - 104;
-  window.scrollTo({ top, behavior: "smooth" });
-  setNavigationOpen(false);
+  if (persist) localStorage.setItem(TOOL_STATE_KEY, toolId);
+  window.scrollTo({ top: 0, behavior: "instant" });
 }
 
-function initializeNavigation() {
-  els.menuButton?.addEventListener("click", () => setNavigationOpen(true));
-  els.closeNavButton?.addEventListener("click", () => setNavigationOpen(false));
-  els.navScrim?.addEventListener("click", () => setNavigationOpen(false));
-  els.navLinks.forEach(link => link.addEventListener("click", () => navigateToSection(link.dataset.target)));
-  document.addEventListener("keydown", event => { if (event.key === "Escape") setNavigationOpen(false); });
-  const observer = new IntersectionObserver(entries => {
-    const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
-    if (!visible) return;
-    els.navLinks.forEach(link => link.classList.toggle("active", link.dataset.target === visible.target.dataset.sectionId));
-  }, { rootMargin: "-25% 0px -60%", threshold: [0.05, 0.25, 0.5] });
-  accordionSections.forEach(section => observer.observe(section));
+function initializeToolNavigation() {
+  els.bottomNavButtons.forEach(button => {
+    button.addEventListener("click", () => activateTool(button.dataset.tool));
+  });
+  activateTool(localStorage.getItem(TOOL_STATE_KEY) || "conversion", { persist: false });
 }
 
 function parseLocalizedNumber(value) {
@@ -572,8 +508,7 @@ els.precisionButton.addEventListener("click", () => {
 });
 
 els.precisionValue.textContent = precision;
-initializeAccordions();
-initializeNavigation();
+initializeToolNavigation();
 loadCachedRate();
 translateInterface();
 fetchLiveRate();

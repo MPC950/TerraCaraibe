@@ -9,3 +9,53 @@
 @media(max-width:650px){.topbar{min-height:72px;padding:11px 14px}.live-pill{display:none}.workspace{padding:16px}.welcome-panel{padding:23px 20px;align-items:flex-start}.welcome-stat{display:none}.accordion-trigger{padding:15px;min-height:76px}.accordion-inner{padding:18px 15px}.section-icon{width:39px;height:39px}.cost-input-grid,.results-list{grid-template-columns:1fr}.unit-grid{grid-template-columns:1fr 44px}.unit-grid>div:last-child{grid-column:1/-1}.swap-button{grid-column:2;grid-row:1}.app-footer{padding:2px 16px 24px;flex-direction:column}.precision-control{display:none}}
 @media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#08151b;--surface:#102229;--surface-2:#0d1c22;--text:#edf5f6;--muted:#9bb0b8;--line:#274049;--soft:#17343e;--shadow:0 14px 34px rgba(0,0,0,.25)}.topbar{background:rgba(16,34,41,.9)}input,select{background:#0d1c22;color:var(--text);border-color:#38505a}.field-label,.notes-content ul{color:#c8d6da}.accordion-trigger:hover{background:#132831}.live-pill{background:#102a20;border-color:#244a36}.language-button,.secondary-button{background:var(--surface)}.result-row{background:var(--surface-2)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.accordion-content,.accordion-chevron,.sidebar,.toast,.nav-link{transition:none}}
+
+
+/* v1.8.0 bottom tool navigation */
+.app-frame { display: block; min-height: 100dvh; }
+.app-body { min-width: 0; min-height: 100dvh; padding-bottom: calc(82px + env(safe-area-inset-bottom)); }
+.workspace { width: min(100%, 1120px); margin: 0 auto; padding-bottom: 28px; }
+.menu-button { display: none !important; }
+.tool-panel[hidden], .tool-intro[hidden] { display: none !important; }
+.tool-panel { animation: tool-panel-in .2s ease; scroll-margin-top: 90px; }
+.tool-panel .accordion-trigger { cursor: default; pointer-events: none; }
+.tool-panel .accordion-chevron { display: none; }
+.tool-panel .accordion-content { display: block !important; height: auto !important; overflow: visible; opacity: 1; }
+.tool-panel .accordion-inner { border-top: 1px solid var(--border); }
+.bottom-nav {
+  position: fixed; z-index: 60; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: min(100%, 760px); min-height: 68px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 7px 10px calc(7px + env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  border: 1px solid var(--border); border-bottom: 0;
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -12px 32px rgba(15, 45, 58, .13);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+.bottom-nav-item {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; min-width: 0; min-height: 54px; padding: 5px 3px;
+  border: 0; border-radius: 15px; background: transparent; color: var(--muted);
+  font: inherit; font-size: .7rem; font-weight: 750; cursor: pointer;
+  transition: color .16s ease, background .16s ease, transform .16s ease;
+}
+.bottom-nav-item svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.bottom-nav-item.active { color: var(--primary); background: color-mix(in srgb, var(--primary) 11%, transparent); }
+.bottom-nav-item.active::before { content: ""; position: absolute; top: 1px; width: 26px; height: 3px; border-radius: 999px; background: var(--primary); }
+.bottom-nav-item:active { transform: scale(.96); }
+.app-footer { padding-bottom: 8px; }
+@keyframes tool-panel-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (min-width: 900px) {
+  .workspace { padding-top: 28px; }
+  .bottom-nav { bottom: 18px; border-bottom: 1px solid var(--border); border-radius: 22px; }
+  .app-body { padding-bottom: 112px; }
+}
+@media (max-width: 520px) {
+  .topbar { padding-inline: 16px; }
+  .topbar-actions .live-pill { display: none; }
+  .workspace { padding: 16px 12px 24px; }
+  .welcome-panel { padding: 18px; }
+  .bottom-nav { border-left: 0; border-right: 0; border-radius: 18px 18px 0 0; }
+  .bottom-nav-item span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}

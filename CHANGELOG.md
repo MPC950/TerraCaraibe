@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.8.0
+
+### Added
+- Fixed bottom navigation with icons for the four primary tools.
+- Dedicated tool screens for conversion, valuation, reference conversions, and unit definitions.
+- Persistent active-tool selection between visits.
+
+### Improved
+- Replaced the long scrolling workspace with a focused tabbed interface.
+- Improved one-handed mobile navigation and safe-area support.
+- Preserved desktop usability with a centered floating navigation dock.
+
 All notable changes to TerraCaraïbe are documented here.
 
 The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
