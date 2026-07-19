@@ -1,4 +1,4 @@
-/* TerraCaraïbe Design System v2.3.0 */
+/* TerraCaraïbe Design System v2.3.1 */
 :root {
   color-scheme: light;
   --color-canvas: #f4f7f6;
@@ -164,3 +164,15 @@ input:focus, select:focus { border-color: var(--color-brand-500); box-shadow: 0 
 
 /* Saved parcels module */
 textarea{width:100%;padding:var(--space-3) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-md);color:var(--color-text);background:var(--color-surface-subtle);font:inherit;resize:vertical}textarea:focus{border-color:var(--color-brand-500);box-shadow:0 0 0 4px var(--color-focus);outline:0}.section-title-row,.parcel-list-toolbar,.parcel-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-3)}.section-title-row h3,.parcel-card h3{margin:0;font-size:var(--text-lg)}.parcel-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3)}.field-span-2{grid-column:1/-1}.parcel-form-actions{display:flex;gap:var(--space-2);margin-top:var(--space-4)}.primary-solid-button,.secondary-button{min-height:2.75rem;padding:0 var(--space-4);border-radius:var(--radius-md);font-weight:800}.primary-solid-button{border:1px solid var(--color-brand-600);color:#fff;background:var(--color-brand-600)}.secondary-button{border:1px solid var(--color-border);color:var(--color-brand-700);background:var(--color-surface)}.parcel-list-toolbar{align-items:center;margin:var(--space-5) 0 var(--space-3)}.parcel-list-toolbar>div{display:flex;gap:var(--space-2)}.filter-button{display:inline-flex;align-items:center;gap:var(--space-2)}.filter-button .icon{width:1rem;height:1rem}.file-button{position:relative;cursor:pointer}.file-button input{position:absolute;inset:0;opacity:0;cursor:pointer}.parcel-list{display:grid;gap:var(--space-3)}.parcel-card{padding:var(--space-5);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm)}.parcel-card-head p,.parcel-date,.parcel-notes{color:var(--color-text-muted);font-size:var(--text-xs)}.parcel-card-head p{margin:var(--space-1) 0 0}.parcel-date{white-space:nowrap}.parcel-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3);margin:var(--space-4) 0}.parcel-metrics>div{padding:var(--space-3);border-radius:var(--radius-md);background:var(--color-surface-subtle)}.parcel-metrics span,.parcel-metrics strong{display:block}.parcel-metrics span{color:var(--color-text-muted);font-size:.6875rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.parcel-metrics strong{margin-top:var(--space-1)}.parcel-notes{white-space:pre-wrap}.parcel-actions{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-4)}.parcel-actions .secondary-button{flex:1}.danger{color:#b42318}.parcel-edit{font-size:1.1rem}.parcel-form-actions [hidden]{display:none}@media(max-width:32.5rem){.parcel-form-grid{grid-template-columns:1fr}.field-span-2{grid-column:auto}.section-title-row{display:block}.section-title-row .icon-action{margin-top:var(--space-3)}.parcel-card-head{display:block}.parcel-date{display:block;margin-top:var(--space-2)}.parcel-actions .secondary-button{flex-basis:100%}.bottom-nav-item{font-size:.5625rem}.bottom-nav{width:min(calc(100% - .75rem),43.75rem)}}
+
+
+/* Value parcel summary */
+.parcel-summary-card{display:grid;gap:var(--space-4)}
+.summary-card-head{display:flex;align-items:flex-start;justify-content:space-between}
+.summary-card-head h3{margin:.2rem 0 0;font-size:var(--text-lg)}
+.summary-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3)}
+.summary-metric{display:grid;gap:.35rem;padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface-subtle)}
+.summary-metric span{font-size:var(--text-sm);color:var(--color-text-muted)}
+.summary-metric strong{font-size:clamp(1.2rem,4vw,1.65rem);line-height:1.15;overflow-wrap:anywhere}
+.summary-metric small{color:var(--color-text-muted);font-weight:600}
+@media (max-width:560px){.summary-metrics{grid-template-columns:1fr}}

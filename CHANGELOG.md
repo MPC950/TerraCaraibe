@@ -4,6 +4,17 @@ All notable changes to TerraCaraïbe are documented here.
 
 The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
+## [2.3.1] - 2026-07-19
+
+### Added
+- Added a Parcel Summary card to the Land Value screen.
+- Added live display of the total land cost and parcel size.
+- Added an approximate converted total when the input and output currencies differ.
+
+### Changed
+- Connected the summary to Converter inputs and Saved Parcel handoff data.
+- Updated the application version and offline cache to v2.3.1.
+
 ## [2.3.0] - 2026-07-19
 
 ### Added

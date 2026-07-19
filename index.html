@@ -87,6 +87,22 @@
             <div><label class="field-label" for="outputCurrency" data-i18n="outputCurrency">Show results in</label><select id="outputCurrency"></select></div>
           </div>
         </article>
+        <article class="app-card parcel-summary-card" aria-live="polite">
+          <div class="summary-card-head">
+            <div><span class="eyebrow" data-i18n="parcelSummary">Parcel summary</span><h3 data-i18n="landValue">Land value</h3></div>
+          </div>
+          <div class="summary-metrics">
+            <div class="summary-metric">
+              <span data-i18n="totalLandCost">Total land cost</span>
+              <strong id="valueSummaryCost">—</strong>
+              <small id="valueSummaryConverted" hidden></small>
+            </div>
+            <div class="summary-metric">
+              <span data-i18n="parcelSize">Parcel size</span>
+              <strong id="valueSummarySize">—</strong>
+            </div>
+          </div>
+        </article>
         <article class="rate-card">
           <div class="rate-card-head"><div><span data-i18n="liveRate">Live rate</span><strong id="exchangeRateDisplay">1 USD = — HTG</strong></div><button id="refreshRateButton" class="icon-action" type="button"><svg class="icon"><use href="#icon-refresh"></use></svg><span data-i18n="refreshRate">Refresh</span></button></div>
           <div class="rate-arrow">USD <span>↓</span> HTG</div>
@@ -138,7 +154,7 @@
           <div class="settings-row"><div><strong data-i18n="precision">Precision</strong><span data-i18n="precisionHelp">Number of decimal places shown in conversion results.</span></div><button id="settingsPrecisionButton" class="setting-control" type="button"><span id="settingsPrecisionValue">4</span></button></div>
         </article>
         <article class="app-card definitions-card"><h3 data-i18n="definitions">Definitions used</h3><ul><li><strong>1 carreau</strong> = 12,900 m²</li><li><strong>1 centième</strong> = 129 m²</li><li><strong>1 seizième</strong> = 806.25 m²</li><li><strong>1 tarea</strong> = 628.8 m²</li></ul><p class="note" data-i18n="notationNote">SI symbols are standardized. Abbreviations for traditional land units are customary and may vary between deeds and jurisdictions.</p></article>
-        <article class="about-card"><strong>TerraCaraïbe</strong><span>v2.3.0</span><p data-i18n="offlineReady">Works offline after the first visit.</p></article>
+        <article class="about-card"><strong>TerraCaraïbe</strong><span>v2.3.1</span><p data-i18n="offlineReady">Works offline after the first visit.</p></article>
       </section>
     </main>
 
