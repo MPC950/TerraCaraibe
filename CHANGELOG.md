@@ -4,6 +4,19 @@ All notable changes to TerraCaraïbe are documented here.
 
 The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
+## [2.3.0] - 2026-07-19
+
+### Added
+- Added a Saved Parcels module with locally stored parcel records.
+- Added parcel fields for name, area, unit, location, purchase price, currency, and notes.
+- Added actions to reopen saved records in the Converter and Land Value tools.
+- Added JSON export and import for parcel backups and transfer.
+- Added a Saved Parcels dashboard card and bottom-navigation destination.
+
+### Changed
+- Expanded the floating navigation from five to six destinations.
+- Updated the application version and offline cache to v2.3.0.
+
 ## [2.2.0] - 2026-07-18
 
 ### Added

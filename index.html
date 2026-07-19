@@ -25,6 +25,11 @@
     <symbol id="icon-swap" viewBox="0 0 24 24"><path d="M7 7h11"/><path d="m15 4 3 3-3 3"/><path d="M17 17H6"/><path d="m9 14-3 3 3 3"/></symbol>
     <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></symbol>
     <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="icon-parcel" viewBox="0 0 24 24"><path d="M4 6 9 3l6 3 5-3v15l-5 3-6-3-5 3Z"/><path d="M9 3v15"/><path d="M15 6v15"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="m9 7 1-3h4l1 3"/><path d="m7 7 1 13h8l1-13"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 21V9"/><path d="m7 14 5-5 5 5"/><path d="M5 3h14"/></symbol>
     <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 6v5h-5"/><path d="M4 18v-5h5"/><path d="M6.1 9a7 7 0 0 1 11.7-2.6L20 11"/><path d="m4 13 2.2 4.6A7 7 0 0 0 17.9 15"/></symbol>
   </svg>
   <div class="app-shell">
@@ -45,6 +50,9 @@
           </button>
           <button class="tool-launch-card" type="button" data-open-screen="reference">
             <span class="tool-card-icon"><svg class="icon"><use href="#icon-reference"></use></svg></span><span><strong data-i18n="reference">Reference</strong><small data-i18n="referenceHelp">Search and compare all supported units.</small></span><span class="tool-card-chevron"><svg class="icon"><use href="#icon-chevron-right"></use></svg></span>
+          </button>
+          <button class="tool-launch-card" type="button" data-open-screen="saved">
+            <span class="tool-card-icon"><svg class="icon"><use href="#icon-parcel"></use></svg></span><span><strong data-i18n="savedParcels">Saved parcels</strong><small data-i18n="savedParcelsHelp">Save land records and reopen them in the converter or value tool.</small></span><span class="tool-card-chevron"><svg class="icon"><use href="#icon-chevron-right"></use></svg></span>
           </button>
           <button class="tool-launch-card" type="button" data-open-screen="settings">
             <span class="tool-card-icon"><svg class="icon"><use href="#icon-settings"></use></svg></span><span><strong data-i18n="settings">Settings</strong><small data-i18n="settingsHelp">Language, appearance, precision, and definitions.</small></span><span class="tool-card-chevron"><svg class="icon"><use href="#icon-chevron-right"></use></svg></span>
@@ -100,6 +108,28 @@
         <div id="allResults" class="result-cards"></div>
       </section>
 
+      <section class="tool-screen" data-screen="saved" hidden aria-hidden="true">
+        <div class="screen-heading"><p class="eyebrow" data-i18n="parcelRecords">Parcel records</p><h2 data-i18n="savedParcels">Saved parcels</h2><p data-i18n="savedIntro">Keep parcel area, location, price, and notes together on this device.</p></div>
+        <article class="app-card parcel-form-card">
+          <div class="section-title-row"><div><h3 id="parcelFormTitle" data-i18n="newParcel">New parcel</h3><p class="helper" data-i18n="parcelFormHelp">Records are stored locally in this browser.</p></div><button id="newParcelButton" class="icon-action" type="button"><svg class="icon"><use href="#icon-plus"></use></svg><span data-i18n="newParcel">New parcel</span></button></div>
+          <form id="parcelForm">
+            <input id="parcelId" type="hidden">
+            <div class="parcel-form-grid">
+              <div class="field-span-2"><label class="field-label" for="parcelName" data-i18n="parcelName">Parcel name</label><input id="parcelName" type="text" maxlength="80" required placeholder="North Farm"></div>
+              <div><label class="field-label" for="parcelArea" data-i18n="parcelArea">Area</label><input id="parcelArea" inputmode="decimal" type="text" required placeholder="1"></div>
+              <div><label class="field-label" for="parcelUnit" data-i18n="parcelUnit">Area unit</label><select id="parcelUnit"></select></div>
+              <div class="field-span-2"><label class="field-label" for="parcelLocation" data-i18n="parcelLocation">Location</label><input id="parcelLocation" type="text" maxlength="120" placeholder="Commune, department, country"></div>
+              <div><label class="field-label" for="parcelPrice" data-i18n="parcelPrice">Purchase price</label><input id="parcelPrice" inputmode="decimal" type="text" placeholder="0"></div>
+              <div><label class="field-label" for="parcelCurrency" data-i18n="parcelCurrency">Currency</label><select id="parcelCurrency"></select></div>
+              <div class="field-span-2"><label class="field-label" for="parcelNotes" data-i18n="parcelNotes">Notes</label><textarea id="parcelNotes" rows="3" maxlength="600" placeholder="Access, boundaries, ownership, planting plans…"></textarea></div>
+            </div>
+            <div class="parcel-form-actions"><button class="primary-solid-button" type="submit" data-i18n="saveParcel">Save parcel</button><button id="cancelParcelEdit" class="secondary-button" type="button" data-i18n="cancel">Cancel</button></div>
+          </form>
+        </article>
+        <div class="parcel-list-toolbar"><strong><span id="parcelCount">0</span> <span data-i18n="parcels">parcels</span></strong><div><button id="exportParcelsButton" class="filter-button" type="button"><svg class="icon"><use href="#icon-download"></use></svg><span data-i18n="export">Export</span></button><label class="filter-button file-button"><svg class="icon"><use href="#icon-upload"></use></svg><span data-i18n="import">Import</span><input id="importParcelsInput" type="file" accept="application/json,.json"></label></div></div>
+        <div id="parcelList" class="parcel-list" aria-live="polite"></div>
+      </section>
+
       <section class="tool-screen" data-screen="settings" hidden aria-hidden="true">
         <div class="screen-heading"><p class="eyebrow" data-i18n="preferences">Preferences</p><h2 data-i18n="settings">Settings</h2><p data-i18n="settingsIntro">Customize TerraCaraïbe and review the unit definitions used by the app.</p></div>
         <article class="settings-card">
@@ -108,7 +138,7 @@
           <div class="settings-row"><div><strong data-i18n="precision">Precision</strong><span data-i18n="precisionHelp">Number of decimal places shown in conversion results.</span></div><button id="settingsPrecisionButton" class="setting-control" type="button"><span id="settingsPrecisionValue">4</span></button></div>
         </article>
         <article class="app-card definitions-card"><h3 data-i18n="definitions">Definitions used</h3><ul><li><strong>1 carreau</strong> = 12,900 m²</li><li><strong>1 centième</strong> = 129 m²</li><li><strong>1 seizième</strong> = 806.25 m²</li><li><strong>1 tarea</strong> = 628.8 m²</li></ul><p class="note" data-i18n="notationNote">SI symbols are standardized. Abbreviations for traditional land units are customary and may vary between deeds and jurisdictions.</p></article>
-        <article class="about-card"><strong>TerraCaraïbe</strong><span>v2.2.0</span><p data-i18n="offlineReady">Works offline after the first visit.</p></article>
+        <article class="about-card"><strong>TerraCaraïbe</strong><span>v2.3.0</span><p data-i18n="offlineReady">Works offline after the first visit.</p></article>
       </section>
     </main>
 
@@ -117,6 +147,7 @@
       <button class="bottom-nav-item" data-screen-target="convert" type="button"><svg class="nav-icon"><use href="#icon-convert"></use></svg><span data-i18n="navConvert">Convert</span></button>
       <button class="bottom-nav-item" data-screen-target="value" type="button"><svg class="nav-icon"><use href="#icon-value"></use></svg><span data-i18n="navValue">Value</span></button>
       <button class="bottom-nav-item" data-screen-target="reference" type="button"><svg class="nav-icon"><use href="#icon-reference"></use></svg><span data-i18n="navReference">Reference</span></button>
+      <button class="bottom-nav-item" data-screen-target="saved" type="button"><svg class="nav-icon"><use href="#icon-parcel"></use></svg><span data-i18n="saved">Saved</span></button>
       <button class="bottom-nav-item" data-screen-target="settings" type="button"><svg class="nav-icon"><use href="#icon-settings"></use></svg><span data-i18n="settings">Settings</span></button>
     </nav>
   </div>
