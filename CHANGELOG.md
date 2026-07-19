@@ -4,6 +4,18 @@ All notable changes to TerraCaraïbe are documented here.
 
 The project follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
+## [2.4.0] - 2026-07-19
+
+### Added
+- Added PDF-ready export from the Land Value Parcel Summary.
+- Added individual PDF export controls to every saved parcel.
+- Reports include parcel size, total land cost, cost per supported unit, exchange-rate context, notes, and generation date.
+- Added English and French report labels.
+
+### Changed
+- Updated the application version and offline cache to v2.4.0.
+- PDF export uses the browser print dialog and works without an external PDF library or network connection.
+
 ## [2.3.1] - 2026-07-19
 
 ### Added

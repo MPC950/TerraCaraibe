@@ -11,7 +11,7 @@ Convert land area. Compare values. Calculate land costs.
 
 ## Saved Parcels
 
-TerraCaraïbe v2.3.1 adds a live Parcel Summary to the Land Value tool, displaying the total land cost, parcel size, and an approximate converted total when currencies differ. TerraCaraïbe v2.3.0 added local parcel records. Users can save a parcel name, area, unit, location, purchase price, currency, and notes; reopen a record directly in the Converter or Land Value tool; and export or import parcel backups as JSON. Parcel data remains on the current browser unless the user exports it.
+TerraCaraïbe v2.4.0 adds offline PDF-ready valuation reports for the current Value screen and individual saved parcels. Reports include parcel size, total cost, cost per supported unit, exchange-rate context, notes, and generation date. Export uses the browser print dialog, where users select “Save as PDF.” TerraCaraïbe v2.3.1 added a live Parcel Summary to the Land Value tool, displaying the total land cost, parcel size, and an approximate converted total when currencies differ. TerraCaraïbe v2.3.0 added local parcel records. Users can save a parcel name, area, unit, location, purchase price, currency, and notes; reopen a record directly in the Converter or Land Value tool; and export or import parcel backups as JSON. Parcel data remains on the current browser unless the user exports it.
 
 ## Features
 
@@ -34,7 +34,7 @@ TerraCaraïbe v2.3.1 adds a live Parcel Summary to the Land Value tool, displayi
 
 ## Design system
 
-TerraCaraïbe v2.3.1 uses semantic design tokens for color, typography, spacing, radii, elevation, and control sizing. Shared component rules keep cards, buttons, form fields, navigation, focus states, and light/dark modes visually consistent as new modules are introduced. Icons are embedded as an offline-safe SVG symbol set rather than relying on emoji or external libraries.
+TerraCaraïbe v2.4.0 uses semantic design tokens for color, typography, spacing, radii, elevation, and control sizing. Shared component rules keep cards, buttons, form fields, navigation, focus states, and light/dark modes visually consistent as new modules are introduced. Icons are embedded as an offline-safe SVG symbol set rather than relying on emoji or external libraries.
 
 ## Unified favorites
 

@@ -1,4 +1,4 @@
-/* TerraCaraïbe Design System v2.3.1 */
+/* TerraCaraïbe Design System v2.4.0 */
 :root {
   color-scheme: light;
   --color-canvas: #f4f7f6;
@@ -176,3 +176,5 @@ textarea{width:100%;padding:var(--space-3) var(--space-4);border:1px solid var(-
 .summary-metric strong{font-size:clamp(1.2rem,4vw,1.65rem);line-height:1.15;overflow-wrap:anywhere}
 .summary-metric small{color:var(--color-text-muted);font-weight:600}
 @media (max-width:560px){.summary-metrics{grid-template-columns:1fr}}
+
+.parcel-export-pdf .icon{width:1rem;height:1rem}.summary-card-head{gap:var(--space-3)}@media(max-width:520px){.summary-card-head{align-items:flex-start}.summary-card-head .icon-action{padding-inline:var(--space-2)}.summary-card-head .icon-action span{display:none}.parcel-actions .parcel-export-pdf{flex:1 1 100%}}
